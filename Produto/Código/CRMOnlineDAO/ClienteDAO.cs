@@ -11,11 +11,17 @@ namespace CRMOnlineDAO
 {
     public class ClienteDAO : IClienteDAO
     {
+        private IDbConnection connection;
+
+        public ClienteDAO()
+        {
+            connection = new SqlConnection(@"Data Source=.\sqlexpress;AttachDbFilename=CRMOnlineDB.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True");
+        }
+
         public void Inserir(Cliente cliente)
         {
             //TODO: Código para inserir no banco de dados
 
-            IDbConnection connection = new SqlConnection(@"Data Source=.\sqlexpress;Initial Catalog=CRMOnlineDB;Integrated Security=True");
             IDbCommand command = connection.CreateCommand();
 
             command.CommandText = "INSERT INTO Cliente(nomCli, endCli, cidCli, ufCli, codEmp) Values(@Nome, @Endereco, @Cidade, @UF, @CodEmpresa)";
@@ -55,7 +61,6 @@ namespace CRMOnlineDAO
             try
             {
                 //Colocar a string de conexão em um arquivo de configuração
-                connection = new SqlConnection(@"Data Source=.\sqlexpress;Initial Catalog=CRMOnlineDB;Integrated Security=True");
                 IDbCommand command = connection.CreateCommand();
                 command.CommandText = "Select Nome, Email from Cliente";
                 connection.Open();

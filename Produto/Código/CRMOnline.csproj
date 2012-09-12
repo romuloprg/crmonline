@@ -61,6 +61,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\CRMOnlineDB.mdf" />
+    <Content Include="App_Data\CRMOnlineDB_log.ldf">
+      <DependentUpon>CRMOnlineDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Index.aspx" />
     <Content Include="Script\jquery-1.4.1.js" />
     <Content Include="Style\Style.css" />
@@ -99,9 +103,7 @@
   <ItemGroup>
     <Content Include="Site.Master" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Login.Master" />
   </ItemGroup>
