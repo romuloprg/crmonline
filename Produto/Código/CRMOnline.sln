@@ -3,6 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMOnline", "CRMOnline.csproj", "{1D83A7EB-30C2-4BA8-BB04-507878AE3FA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMOnlineDAO", "CRMOnlineDAO\CRMOnlineDAO.csproj", "{6F101D95-29D2-4069-89F5-110930196325}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMOnlineEntity", "CRMOnlineEntity\CRMOnlineEntity.csproj", "{1C60E3A0-10F6-4159-8547-45A0D32B391F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMOnlineIDAO", "CRMOnlineIDAO\CRMOnlineIDAO.csproj", "{E8FDAFF6-866C-4A9F-A062-26990387292D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMOnlineController", "CRMOnlineController\CRMOnlineController.csproj", "{BD1F3F83-6C15-473B-847B-652C9B22E07D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +21,22 @@ Global
 		{1D83A7EB-30C2-4BA8-BB04-507878AE3FA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D83A7EB-30C2-4BA8-BB04-507878AE3FA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D83A7EB-30C2-4BA8-BB04-507878AE3FA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F101D95-29D2-4069-89F5-110930196325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F101D95-29D2-4069-89F5-110930196325}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F101D95-29D2-4069-89F5-110930196325}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F101D95-29D2-4069-89F5-110930196325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C60E3A0-10F6-4159-8547-45A0D32B391F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C60E3A0-10F6-4159-8547-45A0D32B391F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C60E3A0-10F6-4159-8547-45A0D32B391F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C60E3A0-10F6-4159-8547-45A0D32B391F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8FDAFF6-866C-4A9F-A062-26990387292D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8FDAFF6-866C-4A9F-A062-26990387292D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8FDAFF6-866C-4A9F-A062-26990387292D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8FDAFF6-866C-4A9F-A062-26990387292D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD1F3F83-6C15-473B-847B-652C9B22E07D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD1F3F83-6C15-473B-847B-652C9B22E07D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD1F3F83-6C15-473B-847B-652C9B22E07D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD1F3F83-6C15-473B-847B-652C9B22E07D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

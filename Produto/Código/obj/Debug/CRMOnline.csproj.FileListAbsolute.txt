@@ -8,3 +8,8 @@ C:\Users\Romulo\Dropbox\Trab Laboratório\Entrega 04\CRMOnline\bin\CRMOnline.pdb
 C:\Users\Romulo\Dropbox\Trab Laboratório\Entrega 04\CRMOnline\obj\Debug\CRMOnline.csprojResolveAssemblyReference.cache
 C:\Users\Romulo\Dropbox\Trab Laboratório\Entrega 04\CRMOnline\obj\Debug\CRMOnline.dll
 C:\Users\Romulo\Dropbox\Trab Laboratório\Entrega 04\CRMOnline\obj\Debug\CRMOnline.pdb
+C:\Users\Romulo\Dropbox\Trab Laboratório\CRM Online\Produto\Código\bin\CRMOnline.dll
+C:\Users\Romulo\Dropbox\Trab Laboratório\CRM Online\Produto\Código\bin\CRMOnline.pdb
+C:\Users\Romulo\Dropbox\Trab Laboratório\CRM Online\Produto\Código\obj\Debug\CRMOnline.csprojResolveAssemblyReference.cache
+C:\Users\Romulo\Dropbox\Trab Laboratório\CRM Online\Produto\Código\obj\Debug\CRMOnline.dll
+C:\Users\Romulo\Dropbox\Trab Laboratório\CRM Online\Produto\Código\obj\Debug\CRMOnline.pdb

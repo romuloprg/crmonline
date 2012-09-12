@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CRMOnline.Site" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Login.master.cs" Inherits="CRMOnline.Login" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -22,18 +22,7 @@
             <div class="loginDisplay">
                 Bem Vindo! Acesse o sistema ou cadastre-se!
             </div>
-            <div class="clear hideSkiplink">
-                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
-                    <Items>
-                        <asp:MenuItem NavigateUrl="#" Text="Home"/>
-                        <asp:MenuItem NavigateUrl="#" Text="Perfil"/>
-                        <asp:MenuItem NavigateUrl="#" Text="Empresas"/>
-                        <asp:MenuItem NavigateUrl="#" Text="Clientes"/>
-                        <asp:MenuItem NavigateUrl="#" Text="Atividades"/>
-                        <asp:MenuItem NavigateUrl="#" Text="Ajuda"/>
-                    </Items>
-                </asp:Menu>
-            </div>
+            <div class="clear hideSkiplink"></div>
         </div>
         <div class="main">
             <asp:ContentPlaceHolder ID="body" runat="server"/>

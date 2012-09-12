@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="CRMOnline.Index" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Login.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="CRMOnline.Index" %>
 <asp:Content ID="headerContent" runat="server" ContentPlaceHolderID="header">
 </asp:Content>
 <asp:Content ID="bodyContent" runat="server" ContentPlaceHolderID="body">

@@ -10,7 +10,7 @@
 namespace CRMOnline {
     
     
-    public partial class Site {
+    public partial class Login {
         
         /// <summary>
         /// header control.

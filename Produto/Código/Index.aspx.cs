@@ -16,7 +16,7 @@ namespace CRMOnline
 
         protected void btnOk_Click(object sender, EventArgs e)
         {
-                
+            this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Usuário Inválido!');</script>");
         }
     }
 }
