@@ -61,10 +61,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\CRMOnlineDB.mdf" />
-    <Content Include="App_Data\CRMOnlineDB_log.ldf">
-      <DependentUpon>CRMOnlineDB.mdf</DependentUpon>
-    </Content>
+    <Content Include="Cliente.aspx" />
+    <Content Include="Home.aspx" />
+    <Content Include="Imagem\cancelar.png" />
+    <Content Include="Imagem\confirmar.png" />
+    <Content Include="Imagem\delete.gif" />
+    <Content Include="Imagem\editar.gif" />
     <Content Include="Index.aspx" />
     <Content Include="Script\jquery-1.4.1.js" />
     <Content Include="Style\Style.css" />
@@ -77,6 +79,20 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cliente.aspx.cs">
+      <DependentUpon>Cliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cliente.aspx.designer.cs">
+      <DependentUpon>Cliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -103,7 +119,9 @@
   <ItemGroup>
     <Content Include="Site.Master" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Login.Master" />
   </ItemGroup>

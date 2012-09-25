@@ -11,25 +11,25 @@ namespace CRMOnlineDAO
 {
     public class ClienteDAO : IClienteDAO
     {
-        private SqlConnection connection;
+        private IDbConnection connection;
 
         public ClienteDAO()
         {
-            connection = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=CRMOnlineDB;Integrated Security=True");
+            connection = new SqlConnection(@"Data Source=.\sqlexpress;AttachDbFilename=CRMOnlineDB.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True");
         }
 
         public void Inserir(Cliente cliente)
         {
             //TODO: Código para inserir no banco de dados
-            connection.Open();
-            SqlCommand command = new SqlCommand("sproc_InsereCliente", connection);
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.Add(new SqlParameter("@Codigo", cliente.codCliente));
-            command.Parameters.Add(new SqlParameter("@Nome", cliente.nomeCliente));
-            command.Parameters.Add(new SqlParameter("@Email", cliente.enderecoCliente));
-            command.Parameters.Add(new SqlParameter("@Cidade", cliente.cidadeCliente));
-            command.Parameters.Add(new SqlParameter("@UF", cliente.ufCliente));
-            command.Parameters.Add(new SqlParameter("@CodEmpresa", cliente.cnpjEmpresa));
+
+            IDbCommand command = connection.CreateCommand();
+
+            command.CommandText = "INSERT INTO Cliente(nomCli, endCli, cidCli, ufCli, codEmp) Values(@Nome, @Endereco, @Cidade, @UF, @CodEmpresa)";
+            command.Parameters.Add(new SqlParameter("@Nome", cliente.Nome));
+            command.Parameters.Add(new SqlParameter("@Email", cliente.Endereco));
+            command.Parameters.Add(new SqlParameter("@Cidade", cliente.Cidade));
+            command.Parameters.Add(new SqlParameter("@UF", cliente.UF));
+            command.Parameters.Add(new SqlParameter("@CodEmpresa", cliente.CodEmpresa));
             command.ExecuteNonQuery();
         }
 
@@ -37,19 +37,7 @@ namespace CRMOnlineDAO
         public void Atualizar(Cliente cliente)
         {
             //TODO: código para atualizar cliente
-            connection.Open();
-            SqlCommand command = new SqlCommand("sproc_AtualizaCliente", connection);
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.Add(new SqlParameter("@Codigo", cliente.codCliente));
-            command.Parameters.Add(new SqlParameter("@Nome", cliente.nomeCliente));
-            command.Parameters.Add(new SqlParameter("@Email", cliente.enderecoCliente));
-            command.Parameters.Add(new SqlParameter("@Cidade", cliente.cidadeCliente));
-            command.Parameters.Add(new SqlParameter("@UF", cliente.ufCliente));
-            command.Parameters.Add(new SqlParameter("@CodEmpresa", cliente.cnpjEmpresa));
-            command.ExecuteNonQuery();
         }
-
-        //----------------------------até aqui OK-------------------------
 
         public Cliente ObterCliente(int id)
         {

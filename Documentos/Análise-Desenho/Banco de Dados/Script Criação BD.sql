@@ -1,0 +1,260 @@
+USE [CRMOnlineDB]
+GO
+/****** Object:  Table [dbo].[Atividade]    Script Date: 24/09/2012 19:52:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Atividade](
+	[codAti] [int] NOT NULL,
+	[desAti] [nchar](200) NOT NULL,
+	[tipAti] [nchar](50) NOT NULL,
+	[datAti] [date] NOT NULL,
+	[horAti] [time](7) NOT NULL,
+	[durAti] [int] NOT NULL,
+ CONSTRAINT [PK_Atividade] PRIMARY KEY CLUSTERED 
+(
+	[codAti] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Cargo]    Script Date: 24/09/2012 19:52:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Cargo](
+	[codCar] [int] NOT NULL,
+	[nomCar] [nchar](30) NOT NULL,
+ CONSTRAINT [PK_Cargo] PRIMARY KEY CLUSTERED 
+(
+	[codCar] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Cliente]    Script Date: 24/09/2012 19:52:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Cliente](
+	[codCli] [int] NOT NULL,
+	[nomCli] [nchar](50) NOT NULL,
+	[endCli] [nchar](100) NULL,
+	[cidCli] [nchar](50) NULL,
+	[ufCli] [nchar](2) NULL,
+	[cnpjEmp] [nchar](14) NOT NULL,
+ CONSTRAINT [PK_Cliente] PRIMARY KEY CLUSTERED 
+(
+	[codCli] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Contato]    Script Date: 24/09/2012 19:52:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Contato](
+	[codCon] [int] NOT NULL,
+	[nomCon] [nchar](50) NOT NULL,
+	[telCon] [nchar](10) NULL,
+	[emaCon] [nchar](50) NULL,
+	[codCli] [int] NOT NULL,
+ CONSTRAINT [PK_Contato] PRIMARY KEY CLUSTERED 
+(
+	[codCon] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Contrato]    Script Date: 24/09/2012 19:52:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Contrato](
+	[codCtr] [int] NOT NULL,
+	[iniCtr] [date] NOT NULL,
+	[fimCtr] [date] NULL,
+	[cpfUsu] [nchar](11) NOT NULL,
+	[cnpjEmp] [nchar](14) NOT NULL,
+	[codCar] [int] NOT NULL,
+ CONSTRAINT [PK_Contrato] PRIMARY KEY CLUSTERED 
+(
+	[codCtr] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Empresa]    Script Date: 24/09/2012 19:52:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Empresa](
+	[cnpjEmp] [nchar](14) NOT NULL,
+	[razEmp] [nchar](100) NOT NULL,
+	[nomEmp] [nchar](50) NOT NULL,
+	[endEmp] [nchar](100) NULL,
+	[cidEmp] [nchar](50) NULL,
+	[ufEmp] [nchar](2) NULL,
+	[telEmp] [nchar](10) NULL,
+ CONSTRAINT [PK_Empresa] PRIMARY KEY CLUSTERED 
+(
+	[cnpjEmp] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Graduacao]    Script Date: 24/09/2012 19:52:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Graduacao](
+	[codGra] [int] NOT NULL,
+	[nomGra] [nchar](30) NOT NULL,
+ CONSTRAINT [PK_Graduacao] PRIMARY KEY CLUSTERED 
+(
+	[codGra] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Lembrete]    Script Date: 24/09/2012 19:52:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Lembrete](
+	[codLem] [int] NOT NULL,
+	[datLem] [date] NOT NULL,
+	[horLem] [time](7) NOT NULL,
+	[repLem] [nchar](1) NOT NULL,
+	[cpfUsu] [nchar](11) NOT NULL,
+	[codAti] [int] NOT NULL,
+ CONSTRAINT [PK_Lembrete] PRIMARY KEY CLUSTERED 
+(
+	[codLem] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Participante]    Script Date: 24/09/2012 19:52:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Participante](
+	[codPar] [int] NOT NULL,
+	[cpfUsu] [nchar](11) NOT NULL,
+	[codAti] [int] NOT NULL,
+ CONSTRAINT [PK_Participante] PRIMARY KEY CLUSTERED 
+(
+	[codPar] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Usuario]    Script Date: 24/09/2012 19:52:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Usuario](
+	[cpfUsu] [nchar](11) NOT NULL,
+	[nomUsu] [nchar](50) NOT NULL,
+	[sexUsu] [nchar](2) NOT NULL,
+	[endUsu] [nchar](100) NULL,
+	[cidUsu] [nchar](50) NULL,
+	[ufUsu] [nchar](2) NULL,
+	[telUsu] [nchar](10) NULL,
+	[emaUsu] [nchar](50) NOT NULL,
+	[tipUsu] [nchar](1) NOT NULL,
+	[senUsu] [nchar](10) NOT NULL,
+	[codGra] [int] NOT NULL,
+ CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED 
+(
+	[cpfUsu] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Vendedor]    Script Date: 24/09/2012 19:52:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Vendedor](
+	[codVen] [int] NOT NULL,
+	[iniVen] [date] NOT NULL,
+	[fimVen] [date] NULL,
+	[cpfUsu] [nchar](11) NOT NULL,
+	[codCli] [int] NOT NULL,
+ CONSTRAINT [PK_Vendedor] PRIMARY KEY CLUSTERED 
+(
+	[codVen] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+ALTER TABLE [dbo].[Contato]  WITH CHECK ADD  CONSTRAINT [FK_Cliente_Contato] FOREIGN KEY([codCli])
+REFERENCES [dbo].[Cliente] ([codCli])
+GO
+ALTER TABLE [dbo].[Contato] CHECK CONSTRAINT [FK_Cliente_Contato]
+GO
+ALTER TABLE [dbo].[Contrato]  WITH CHECK ADD  CONSTRAINT [FK_Cargo_Contrato] FOREIGN KEY([codCar])
+REFERENCES [dbo].[Cargo] ([codCar])
+GO
+ALTER TABLE [dbo].[Contrato] CHECK CONSTRAINT [FK_Cargo_Contrato]
+GO
+ALTER TABLE [dbo].[Contrato]  WITH CHECK ADD  CONSTRAINT [FK_Usuario_Contrato] FOREIGN KEY([cpfUsu])
+REFERENCES [dbo].[Usuario] ([cpfUsu])
+GO
+ALTER TABLE [dbo].[Contrato] CHECK CONSTRAINT [FK_Usuario_Contrato]
+GO
+ALTER TABLE [dbo].[Lembrete]  WITH CHECK ADD  CONSTRAINT [FK_Atividade_Lembrete] FOREIGN KEY([codAti])
+REFERENCES [dbo].[Atividade] ([codAti])
+GO
+ALTER TABLE [dbo].[Lembrete] CHECK CONSTRAINT [FK_Atividade_Lembrete]
+GO
+ALTER TABLE [dbo].[Lembrete]  WITH CHECK ADD  CONSTRAINT [FK_Usuario_Lembrete] FOREIGN KEY([cpfUsu])
+REFERENCES [dbo].[Usuario] ([cpfUsu])
+GO
+ALTER TABLE [dbo].[Lembrete] CHECK CONSTRAINT [FK_Usuario_Lembrete]
+GO
+ALTER TABLE [dbo].[Participante]  WITH CHECK ADD  CONSTRAINT [FK_Atividade_Participante] FOREIGN KEY([codAti])
+REFERENCES [dbo].[Atividade] ([codAti])
+GO
+ALTER TABLE [dbo].[Participante] CHECK CONSTRAINT [FK_Atividade_Participante]
+GO
+ALTER TABLE [dbo].[Participante]  WITH CHECK ADD  CONSTRAINT [FK_Usuario_Participante] FOREIGN KEY([cpfUsu])
+REFERENCES [dbo].[Usuario] ([cpfUsu])
+GO
+ALTER TABLE [dbo].[Participante] CHECK CONSTRAINT [FK_Usuario_Participante]
+GO
+ALTER TABLE [dbo].[Usuario]  WITH CHECK ADD  CONSTRAINT [FK_Graduacao_Usuario] FOREIGN KEY([codGra])
+REFERENCES [dbo].[Graduacao] ([codGra])
+GO
+ALTER TABLE [dbo].[Usuario] CHECK CONSTRAINT [FK_Graduacao_Usuario]
+GO
+ALTER TABLE [dbo].[Vendedor]  WITH CHECK ADD  CONSTRAINT [FK_Cliente_Vendedor] FOREIGN KEY([codCli])
+REFERENCES [dbo].[Cliente] ([codCli])
+GO
+ALTER TABLE [dbo].[Vendedor] CHECK CONSTRAINT [FK_Cliente_Vendedor]
+GO
+ALTER TABLE [dbo].[Vendedor]  WITH CHECK ADD  CONSTRAINT [FK_Usuario_Vendedor] FOREIGN KEY([cpfUsu])
+REFERENCES [dbo].[Usuario] ([cpfUsu])
+GO
+ALTER TABLE [dbo].[Cliente]  WITH CHECK ADD  CONSTRAINT [FK_Empresa_Cliente] FOREIGN KEY([cnpjEmp])
+REFERENCES [dbo].[Empresa] ([cnpjEmp])
+GO
+ALTER TABLE [dbo].[Contrato]  WITH CHECK ADD  CONSTRAINT [FK_Empresa_Contrato] FOREIGN KEY([cnpjEmp])
+REFERENCES [dbo].[Empresa] ([cnpjEmp])
+GO
+ALTER TABLE [dbo].[Vendedor] CHECK CONSTRAINT [FK_Usuario_Vendedor]
+GO
