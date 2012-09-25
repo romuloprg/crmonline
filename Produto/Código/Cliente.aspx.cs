@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+//using CRMOnlineController;
+//using CRMOnlineEntity;
 
 namespace CRMOnline
 {
@@ -15,7 +17,6 @@ namespace CRMOnline
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //strConexao = @"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|CRMOnlineDB.mdf;Integrated Security=True;User Instance=True";
             strConexao = @"Data Source=.\SQLEXPRESS;Initial Catalog=CRMOnlineDB;Integrated Security=True";
 
             //chama apenas na primeira carga da pagina
@@ -27,12 +28,15 @@ namespace CRMOnline
 
         public void preencheGrid()
         {
+            //ClienteController teste = new ClienteController();
+            //List<ClienteEntity> lista = teste.ObterTodos();
+
             //cria uma conexão usando a string de conexão definida
             SqlConnection con = new SqlConnection(strConexao);
             //abre a conexão
             con.Open();
             //define um objeto Command que usa a stored procedure na conexão criada
-            SqlCommand cmd = new SqlCommand("sproc_BuscaCliente", con);
+            SqlCommand cmd = new SqlCommand("sproc_BuscaTodosCliente", con);
             //realizar um acesso somente-leitura no banco de dados
             SqlDataReader dr = cmd.ExecuteReader();
             //cria um datatable que conterá os dados
@@ -76,7 +80,8 @@ namespace CRMOnline
             string nomCli = ((TextBox)ClienteGridView.Rows[e.RowIndex].FindControl("txtNome")).Text;
             string endCli = ((TextBox)ClienteGridView.Rows[e.RowIndex].FindControl("txtEndereco")).Text;
             string cidCli = ((TextBox)ClienteGridView.Rows[e.RowIndex].FindControl("txtCidade")).Text;
-            string ufCli = ((TextBox)ClienteGridView.Rows[e.RowIndex].FindControl("txtUf")).Text;
+            string ufCli = ((DropDownList)ClienteGridView.Rows[e.RowIndex].FindControl("txtUf")).Text;
+            string cnpjEmp = ((DropDownList)ClienteGridView.Rows[e.RowIndex].FindControl("txtEmpresa")).Text;
             //abre a conexão
             SqlConnection con = new SqlConnection(strConexao);
             con.Open();
@@ -90,6 +95,7 @@ namespace CRMOnline
             cmd.Parameters.AddWithValue("@endCli ", endCli);
             cmd.Parameters.AddWithValue("@cidCli ", cidCli);
             cmd.Parameters.AddWithValue("@ufCli ", ufCli);
+            cmd.Parameters.AddWithValue("@cnpjEmp ", 11);
             //Método que retorna as linhas afetadas
             cmd.ExecuteNonQuery();
             //nenhuma linha no modo de edição

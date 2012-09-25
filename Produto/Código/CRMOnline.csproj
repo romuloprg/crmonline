@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cliente.aspx" />
+    <Content Include="ClienteForm.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Imagem\cancelar.png" />
     <Content Include="Imagem\confirmar.png" />
@@ -85,6 +86,13 @@
     </Compile>
     <Compile Include="Cliente.aspx.designer.cs">
       <DependentUpon>Cliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClienteForm.aspx.cs">
+      <DependentUpon>ClienteForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClienteForm.aspx.designer.cs">
+      <DependentUpon>ClienteForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -124,6 +132,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Login.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="CRMOnlineController\CRMOnlineController.csproj">
+      <Project>{bd1f3f83-6c15-473b-847b-652c9b22e07d}</Project>
+      <Name>CRMOnlineController</Name>
+    </ProjectReference>
+    <ProjectReference Include="CRMOnlineEntity\CRMOnlineEntity.csproj">
+      <Project>{1c60e3a0-10f6-4159-8547-45a0d32b391f}</Project>
+      <Name>CRMOnlineEntity</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

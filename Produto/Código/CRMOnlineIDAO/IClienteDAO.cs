@@ -8,9 +8,10 @@ namespace CRMOnlineIDAO
 {
     public interface IClienteDAO
     {
-        void Inserir(Cliente cliente);
-        void Atualizar(Cliente cliente);
-        Cliente ObterCliente(int id);
-        List<Cliente> ObterTodos();
+        void Inserir(ClienteEntity cliente);
+        void Atualizar(ClienteEntity cliente);
+        ClienteEntity ObterCliente(int id);
+        List<ClienteEntity> ObterTodos();
+        void Remover(int id);
     }
 }

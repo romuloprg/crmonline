@@ -18,40 +18,37 @@ namespace CRMOnlineDAO
             connection = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=CRMOnlineDB;Integrated Security=True");
         }
 
-        public void Inserir(Cliente cliente)
+        public void Inserir(ClienteEntity cliente)
         {
             //TODO: Código para inserir no banco de dados
             connection.Open();
             SqlCommand command = new SqlCommand("sproc_InsereCliente", connection);
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.Add(new SqlParameter("@Codigo", cliente.codCliente));
-            command.Parameters.Add(new SqlParameter("@Nome", cliente.nomeCliente));
-            command.Parameters.Add(new SqlParameter("@Email", cliente.enderecoCliente));
-            command.Parameters.Add(new SqlParameter("@Cidade", cliente.cidadeCliente));
-            command.Parameters.Add(new SqlParameter("@UF", cliente.ufCliente));
-            command.Parameters.Add(new SqlParameter("@CodEmpresa", cliente.cnpjEmpresa));
+            command.Parameters.Add(new SqlParameter("@codCli", cliente.codCliente));
+            command.Parameters.Add(new SqlParameter("@nomCli", cliente.nomeCliente));
+            command.Parameters.Add(new SqlParameter("@endCli", cliente.enderecoCliente));
+            command.Parameters.Add(new SqlParameter("@cidCli", cliente.cidadeCliente));
+            command.Parameters.Add(new SqlParameter("@ufCli", cliente.ufCliente));
+            command.Parameters.Add(new SqlParameter("@cnpjEmp", cliente.cnpjEmpresa));
             command.ExecuteNonQuery();
         }
 
-
-        public void Atualizar(Cliente cliente)
+        public void Atualizar(ClienteEntity cliente)
         {
             //TODO: código para atualizar cliente
             connection.Open();
             SqlCommand command = new SqlCommand("sproc_AtualizaCliente", connection);
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.Add(new SqlParameter("@Codigo", cliente.codCliente));
-            command.Parameters.Add(new SqlParameter("@Nome", cliente.nomeCliente));
-            command.Parameters.Add(new SqlParameter("@Email", cliente.enderecoCliente));
-            command.Parameters.Add(new SqlParameter("@Cidade", cliente.cidadeCliente));
-            command.Parameters.Add(new SqlParameter("@UF", cliente.ufCliente));
-            command.Parameters.Add(new SqlParameter("@CodEmpresa", cliente.cnpjEmpresa));
+            command.Parameters.Add(new SqlParameter("@codCli", cliente.codCliente));
+            command.Parameters.Add(new SqlParameter("@nomCli", cliente.nomeCliente));
+            command.Parameters.Add(new SqlParameter("@endCli", cliente.enderecoCliente));
+            command.Parameters.Add(new SqlParameter("@cidCli", cliente.cidadeCliente));
+            command.Parameters.Add(new SqlParameter("@ufCli", cliente.ufCliente));
+            command.Parameters.Add(new SqlParameter("@cnpjEmp", cliente.cnpjEmpresa));
             command.ExecuteNonQuery();
         }
 
-        //----------------------------até aqui OK-------------------------
-
-        public Cliente ObterCliente(int id)
+        public ClienteEntity ObterCliente(int id)
         {
             //TODO: código para selecionar um cliente pelo id
             return null;
@@ -66,29 +63,27 @@ namespace CRMOnlineDAO
             return valorDefault;
         }
 
-        public List<Cliente> ObterTodos()
+        public List<ClienteEntity> ObterTodos()
         {
-            IDbConnection connection = null;
-            List<Cliente> clientes = new List<Cliente>();
+            List<ClienteEntity> clientes = new List<ClienteEntity>();
             try
             {
                 //Colocar a string de conexão em um arquivo de configuração
-                IDbCommand command = connection.CreateCommand();
-                command.CommandText = "Select Nome, Email from Cliente";
                 connection.Open();
+                SqlCommand command = new SqlCommand("sproc_BuscaTodosCliente", connection);
                 IDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    Cliente cliente = new Cliente();
+                    ClienteEntity cliente = new ClienteEntity();
 
                     object valor = reader.GetValue(0);
 
-                    cliente.Nome = this.ObterValor<string>(reader, 0, null);
-                    cliente.Endereco = this.ObterValor<string>(reader, 1, null);
-                    cliente.Cidade = this.ObterValor<string>(reader, 2, null);
-                    cliente.UF = this.ObterValor<string>(reader, 3, null);
-                    cliente.CodEmpresa = this.ObterValor<string>(reader, 4, null);
+                    cliente.nomeCliente = this.ObterValor<string>(reader, 0, null);
+                    cliente.enderecoCliente = this.ObterValor<string>(reader, 1, null);
+                    cliente.cidadeCliente = this.ObterValor<string>(reader, 2, null);
+                    cliente.ufCliente = this.ObterValor<string>(reader, 3, null);
+                    cliente.cnpjEmpresa = this.ObterValor<string>(reader, 4, null);
 
                     clientes.Add(cliente);
                 }
@@ -102,6 +97,16 @@ namespace CRMOnlineDAO
             }
 
             return clientes;
+        }
+
+        public void Remover(int id)
+        {
+            //TODO: código para atualizar cliente
+            connection.Open();
+            SqlCommand command = new SqlCommand("sproc_DeletaCliente", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@codCli", id));
+            command.ExecuteNonQuery();
         }
     }
 }

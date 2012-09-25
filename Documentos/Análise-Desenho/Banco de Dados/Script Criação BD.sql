@@ -7,8 +7,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Atividade](
 	[codAti] [int] NOT NULL,
-	[desAti] [nchar](200) NOT NULL,
-	[tipAti] [nchar](50) NOT NULL,
+	[desAti] [varchar](200) NOT NULL,
+	[tipAti] [varchar](50) NOT NULL,
 	[datAti] [date] NOT NULL,
 	[horAti] [time](7) NOT NULL,
 	[durAti] [int] NOT NULL,
@@ -26,7 +26,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Cargo](
 	[codCar] [int] NOT NULL,
-	[nomCar] [nchar](30) NOT NULL,
+	[nomCar] [varchar](30) NOT NULL,
  CONSTRAINT [PK_Cargo] PRIMARY KEY CLUSTERED 
 (
 	[codCar] ASC
@@ -41,11 +41,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Cliente](
 	[codCli] [int] NOT NULL,
-	[nomCli] [nchar](50) NOT NULL,
-	[endCli] [nchar](100) NULL,
-	[cidCli] [nchar](50) NULL,
-	[ufCli] [nchar](2) NULL,
-	[cnpjEmp] [nchar](14) NOT NULL,
+	[nomCli] [varchar](50) NOT NULL,
+	[endCli] [varchar](100) NULL,
+	[cidCli] [varchar](50) NULL,
+	[ufCli] [varchar](2) NULL,
+	[cnpjEmp] [varchar](14) NOT NULL,
  CONSTRAINT [PK_Cliente] PRIMARY KEY CLUSTERED 
 (
 	[codCli] ASC
@@ -60,9 +60,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Contato](
 	[codCon] [int] NOT NULL,
-	[nomCon] [nchar](50) NOT NULL,
-	[telCon] [nchar](10) NULL,
-	[emaCon] [nchar](50) NULL,
+	[nomCon] [varchar](50) NOT NULL,
+	[telCon] [varchar](10) NULL,
+	[emaCon] [varchar](50) NULL,
 	[codCli] [int] NOT NULL,
  CONSTRAINT [PK_Contato] PRIMARY KEY CLUSTERED 
 (
@@ -80,8 +80,8 @@ CREATE TABLE [dbo].[Contrato](
 	[codCtr] [int] NOT NULL,
 	[iniCtr] [date] NOT NULL,
 	[fimCtr] [date] NULL,
-	[cpfUsu] [nchar](11) NOT NULL,
-	[cnpjEmp] [nchar](14) NOT NULL,
+	[cpfUsu] [varchar](11) NOT NULL,
+	[cnpjEmp] [varchar](14) NOT NULL,
 	[codCar] [int] NOT NULL,
  CONSTRAINT [PK_Contrato] PRIMARY KEY CLUSTERED 
 (
@@ -96,13 +96,13 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Empresa](
-	[cnpjEmp] [nchar](14) NOT NULL,
-	[razEmp] [nchar](100) NOT NULL,
-	[nomEmp] [nchar](50) NOT NULL,
-	[endEmp] [nchar](100) NULL,
-	[cidEmp] [nchar](50) NULL,
-	[ufEmp] [nchar](2) NULL,
-	[telEmp] [nchar](10) NULL,
+	[cnpjEmp] [varchar](14) NOT NULL,
+	[razEmp] [varchar](100) NOT NULL,
+	[nomEmp] [varchar](50) NOT NULL,
+	[endEmp] [varchar](100) NULL,
+	[cidEmp] [varchar](50) NULL,
+	[ufEmp] [varchar](2) NULL,
+	[telEmp] [varchar](10) NULL,
  CONSTRAINT [PK_Empresa] PRIMARY KEY CLUSTERED 
 (
 	[cnpjEmp] ASC
@@ -117,7 +117,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Graduacao](
 	[codGra] [int] NOT NULL,
-	[nomGra] [nchar](30) NOT NULL,
+	[nomGra] [varchar](30) NOT NULL,
  CONSTRAINT [PK_Graduacao] PRIMARY KEY CLUSTERED 
 (
 	[codGra] ASC
@@ -134,8 +134,8 @@ CREATE TABLE [dbo].[Lembrete](
 	[codLem] [int] NOT NULL,
 	[datLem] [date] NOT NULL,
 	[horLem] [time](7) NOT NULL,
-	[repLem] [nchar](1) NOT NULL,
-	[cpfUsu] [nchar](11) NOT NULL,
+	[repLem] [varchar](1) NOT NULL,
+	[cpfUsu] [varchar](11) NOT NULL,
 	[codAti] [int] NOT NULL,
  CONSTRAINT [PK_Lembrete] PRIMARY KEY CLUSTERED 
 (
@@ -151,7 +151,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Participante](
 	[codPar] [int] NOT NULL,
-	[cpfUsu] [nchar](11) NOT NULL,
+	[cpfUsu] [varchar](11) NOT NULL,
 	[codAti] [int] NOT NULL,
  CONSTRAINT [PK_Participante] PRIMARY KEY CLUSTERED 
 (
@@ -166,16 +166,16 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Usuario](
-	[cpfUsu] [nchar](11) NOT NULL,
-	[nomUsu] [nchar](50) NOT NULL,
-	[sexUsu] [nchar](2) NOT NULL,
-	[endUsu] [nchar](100) NULL,
-	[cidUsu] [nchar](50) NULL,
-	[ufUsu] [nchar](2) NULL,
-	[telUsu] [nchar](10) NULL,
-	[emaUsu] [nchar](50) NOT NULL,
-	[tipUsu] [nchar](1) NOT NULL,
-	[senUsu] [nchar](10) NOT NULL,
+	[cpfUsu] [varchar](11) NOT NULL,
+	[nomUsu] [varchar](50) NOT NULL,
+	[sexUsu] [varchar](2) NOT NULL,
+	[endUsu] [varchar](100) NULL,
+	[cidUsu] [varchar](50) NULL,
+	[ufUsu] [varchar](2) NULL,
+	[telUsu] [varchar](10) NULL,
+	[emaUsu] [varchar](50) NOT NULL,
+	[tipUsu] [varchar](1) NOT NULL,
+	[senUsu] [varchar](10) NOT NULL,
 	[codGra] [int] NOT NULL,
  CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED 
 (
@@ -193,7 +193,7 @@ CREATE TABLE [dbo].[Vendedor](
 	[codVen] [int] NOT NULL,
 	[iniVen] [date] NOT NULL,
 	[fimVen] [date] NULL,
-	[cpfUsu] [nchar](11) NOT NULL,
+	[cpfUsu] [varchar](11) NOT NULL,
 	[codCli] [int] NOT NULL,
  CONSTRAINT [PK_Vendedor] PRIMARY KEY CLUSTERED 
 (
