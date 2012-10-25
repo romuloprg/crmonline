@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CRMOnlineEntity;
 
 namespace CRMOnlineIDAO
 {
     public interface IClienteDAO
     {
-        void Inserir(ClienteEntity cliente);
-        void Atualizar(ClienteEntity cliente);
-        ClienteEntity ObterCliente(int id);
+        bool Inserir(ClienteEntity cliente);
+        bool Atualizar(ClienteEntity cliente);
+        bool Remover(int codCli);
         List<ClienteEntity> ObterTodos();
-        void Remover(int id);
+        ClienteEntity Obter(int codCli);
+        List<ClienteEntity> Buscar(string busca);
     }
 }

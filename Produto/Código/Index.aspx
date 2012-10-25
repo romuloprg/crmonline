@@ -7,7 +7,7 @@
     </h2>
     <p>
         Para acessar o sistema entre com os dados de usuário.
-        Se você não possui uma conta clique <a href="#" runat="server" enableviewstate="false">aqui</a>.
+        Se você não possui uma conta clique <a href="UsuarioIndex.aspx" runat="server" enableviewstate="false">aqui</a>.
     </p>
     <div class="accountInfo">
         <fieldset class="login">

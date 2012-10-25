@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CRMOnline</RootNamespace>
     <AssemblyName>CRMOnline</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -24,6 +24,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,28 +43,41 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Brasil.mdb" />
     <Content Include="Cliente.aspx" />
     <Content Include="ClienteForm.aspx" />
+    <Content Include="Atividade.aspx" />
+    <Content Include="AtividadeForm.aspx" />
+    <Content Include="EmpregoForm.aspx" />
+    <Content Include="Emprego.aspx" />
+    <Content Include="UsuarioIndex.aspx" />
+    <Content Include="Usuario.aspx" />
+    <Content Include="PermissaoForm.aspx" />
+    <Content Include="Permissao.aspx" />
+    <Content Include="Script\Mascara.js" />
+    <Content Include="UsuarioForm.aspx" />
+    <Content Include="EmpresaForm.aspx" />
+    <Content Include="Empresa.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Imagem\cancelar.png" />
     <Content Include="Imagem\confirmar.png" />
@@ -93,6 +108,83 @@
     </Compile>
     <Compile Include="ClienteForm.aspx.designer.cs">
       <DependentUpon>ClienteForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Atividade.aspx.cs">
+      <DependentUpon>Atividade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Atividade.aspx.designer.cs">
+      <DependentUpon>Atividade.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AtividadeForm.aspx.cs">
+      <DependentUpon>AtividadeForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AtividadeForm.aspx.designer.cs">
+      <DependentUpon>AtividadeForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmpregoForm.aspx.cs">
+      <DependentUpon>EmpregoForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmpregoForm.aspx.designer.cs">
+      <DependentUpon>EmpregoForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Emprego.aspx.cs">
+      <DependentUpon>Emprego.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Emprego.aspx.designer.cs">
+      <DependentUpon>Emprego.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioIndex.aspx.cs">
+      <DependentUpon>UsuarioIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsuarioIndex.aspx.designer.cs">
+      <DependentUpon>UsuarioIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.aspx.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuario.aspx.designer.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PermissaoForm.aspx.cs">
+      <DependentUpon>PermissaoForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PermissaoForm.aspx.designer.cs">
+      <DependentUpon>PermissaoForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Permissao.aspx.cs">
+      <DependentUpon>Permissao.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Permissao.aspx.designer.cs">
+      <DependentUpon>Permissao.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioForm.aspx.cs">
+      <DependentUpon>UsuarioForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsuarioForm.aspx.designer.cs">
+      <DependentUpon>UsuarioForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmpresaForm.aspx.cs">
+      <DependentUpon>EmpresaForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmpresaForm.aspx.designer.cs">
+      <DependentUpon>EmpresaForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Empresa.aspx.cs">
+      <DependentUpon>Empresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Empresa.aspx.designer.cs">
+      <DependentUpon>Empresa.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -127,9 +219,7 @@
   <ItemGroup>
     <Content Include="Site.Master" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Login.Master" />
   </ItemGroup>

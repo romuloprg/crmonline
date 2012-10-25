@@ -15,6 +15,12 @@ C:\Users\Romulo\Dropbox\Trab Laboratório\CRM Online\Produto\Código\obj\Debug\C
 C:\Users\Romulo\Dropbox\Trab Laboratório\CRM Online\Produto\Código\obj\Debug\CRMOnline.pdb
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnline.dll
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnline.pdb
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnlineController.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnlineEntity.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnlineIDAO.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnlineController.pdb
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnlineEntity.pdb
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnlineIDAO.pdb
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\obj\Debug\CRMOnline.csprojResolveAssemblyReference.cache
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\obj\Debug\CRMOnline.dll
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\obj\Debug\CRMOnline.pdb

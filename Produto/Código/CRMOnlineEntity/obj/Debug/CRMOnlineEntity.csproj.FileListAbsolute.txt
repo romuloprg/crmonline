@@ -1,5 +1,4 @@
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\CRMOnlineEntity\bin\Debug\CRMOnlineEntity.dll
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\CRMOnlineEntity\bin\Debug\CRMOnlineEntity.pdb
-C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\CRMOnlineEntity\obj\Debug\CRMOnlineEntity.csprojResolveAssemblyReference.cache
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\CRMOnlineEntity\obj\Debug\CRMOnlineEntity.dll
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\CRMOnlineEntity\obj\Debug\CRMOnlineEntity.pdb

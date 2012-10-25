@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Reflection;
 
 namespace CRMOnlineController.Factory
@@ -10,12 +7,19 @@ namespace CRMOnlineController.Factory
     {
         public static object CreateDAO<GenericType>()
         {
-            //colocar o caminho para a assembly (CRMOnlineDAO.dll) em um arquivo de configuração
-            Assembly testAssembly = Assembly.LoadFile(@"C:\CRMOnlineDAO.dll");
-            //colocar o namespace ("CRMOnlineDAO.") em um arquvo de configuração
-            Type calcType = testAssembly.GetType(string.Concat("CRMOnlineDAO.", typeof(GenericType).Name.Substring(1)));
+            try
+            {
+                // Colocar o caminho para a assembly (CRMOnlineDAO.dll) em um arquivo de configuração
+                Assembly testAssembly = Assembly.LoadFile(System.Configuration.ConfigurationManager.AppSettings["caminhoDll"]);
+                // Colocar o namespace ("CRMOnlineDAO.") em um arquvo de configuração
+                Type calcType = testAssembly.GetType(string.Concat("CRMOnlineDAO.", typeof(GenericType).Name.Substring(1)));
 
-            return Activator.CreateInstance(calcType);
+                return Activator.CreateInstance(calcType);
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

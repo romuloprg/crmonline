@@ -9,6 +9,7 @@
     </asp:ContentPlaceHolder>
     <link href="Style/Style.css" rel="stylesheet" type="text/css" />
     <script src="Script/jquery-1.4.1.js" type="text/javascript"></script>
+    <script src="Script/Mascara.js" type="text/javascript"></script>
 </head>
 <body>
     <form runat="server">
@@ -20,16 +21,19 @@
                 </h1>
             </div>
             <div class="loginDisplay">
-                [Usuário]
+                <asp:Label ID="lblLogin" runat="server" Text="[Usuário]"></asp:Label> - <asp:Label ID="lblTipo" runat="server" Text="[Tipo]"></asp:Label><br />
+                <a id="A1" href="Index.aspx" runat="server" enableviewstate="false">Sair</a>
             </div>
             <div class="clear hideSkiplink">
                 <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
                     <Items>
                         <asp:MenuItem NavigateUrl="~/Home.aspx" Text="Home"/>
-                        <asp:MenuItem NavigateUrl="#" Text="Perfil"/>
-                        <asp:MenuItem NavigateUrl="#" Text="Empresas"/>
+                        <asp:MenuItem NavigateUrl="~/Usuario.aspx" Text="Usuário"/>
+                        <asp:MenuItem NavigateUrl="~/Atividade.aspx" Text="Atividades"/>
                         <asp:MenuItem NavigateUrl="~/Cliente.aspx" Text="Clientes"/>
-                        <asp:MenuItem NavigateUrl="#" Text="Atividades"/>
+                        <asp:MenuItem NavigateUrl="~/Empresa.aspx" Text="Empresa"/>
+                        <asp:MenuItem NavigateUrl="~/Permissao.aspx" Text="Funcionários"/>
+                        <asp:MenuItem NavigateUrl="~/Emprego.aspx" Text="Emprego"/>
                         <asp:MenuItem NavigateUrl="#" Text="Ajuda"/>
                     </Items>
                 </asp:Menu>
