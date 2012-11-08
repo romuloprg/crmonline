@@ -1,26 +1,38 @@
-C:\Users\Romulo\Desktop\CRMOnline\CRMOnline\bin\CRMOnline.dll
-C:\Users\Romulo\Desktop\CRMOnline\CRMOnline\bin\CRMOnline.pdb
-C:\Users\Romulo\Desktop\CRMOnline\CRMOnline\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Romulo\Desktop\CRMOnline\CRMOnline\obj\Debug\CRMOnline.dll
-C:\Users\Romulo\Desktop\CRMOnline\CRMOnline\obj\Debug\CRMOnline.pdb
-C:\Users\Romulo\Dropbox\Trab Laboratório\Entrega 04\CRMOnline\bin\CRMOnline.dll
-C:\Users\Romulo\Dropbox\Trab Laboratório\Entrega 04\CRMOnline\bin\CRMOnline.pdb
-C:\Users\Romulo\Dropbox\Trab Laboratório\Entrega 04\CRMOnline\obj\Debug\CRMOnline.csprojResolveAssemblyReference.cache
-C:\Users\Romulo\Dropbox\Trab Laboratório\Entrega 04\CRMOnline\obj\Debug\CRMOnline.dll
-C:\Users\Romulo\Dropbox\Trab Laboratório\Entrega 04\CRMOnline\obj\Debug\CRMOnline.pdb
-C:\Users\Romulo\Dropbox\Trab Laboratório\CRM Online\Produto\Código\bin\CRMOnline.dll
-C:\Users\Romulo\Dropbox\Trab Laboratório\CRM Online\Produto\Código\bin\CRMOnline.pdb
-C:\Users\Romulo\Dropbox\Trab Laboratório\CRM Online\Produto\Código\obj\Debug\CRMOnline.csprojResolveAssemblyReference.cache
-C:\Users\Romulo\Dropbox\Trab Laboratório\CRM Online\Produto\Código\obj\Debug\CRMOnline.dll
-C:\Users\Romulo\Dropbox\Trab Laboratório\CRM Online\Produto\Código\obj\Debug\CRMOnline.pdb
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnline.dll
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnline.pdb
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\Antlr3.Runtime.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnlineController.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnlineDAO.dll
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnlineEntity.dll
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnlineIDAO.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\DotNetOpenAuth.Core.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\EntityFramework.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\System.Web.Optimization.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\System.Web.Providers.dll
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\WebGrease.dll
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnlineController.pdb
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnlineDAO.pdb
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnlineEntity.pdb
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\CRMOnlineIDAO.pdb
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\EntityFramework.xml
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\DotNetOpenAuth.Core.xml
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\bin\DotNetOpenAuth.AspNet.xml
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\obj\Debug\CRMOnline.csprojResolveAssemblyReference.cache
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\obj\Debug\CRMOnline.dll
 C:\Users\Romulo\Dropbox\Mato-Grosso\CRM Online\Produto\Código\obj\Debug\CRMOnline.pdb

@@ -6,7 +6,7 @@ using CRMOnlineController.Factory;
 
 namespace CRMOnlineController
 {
-    public class AtividadeController
+    public class AtividadeController : IAtividadeDAO
     {
         public bool Inserir(AtividadeEntity atividade)
         {
@@ -26,22 +26,28 @@ namespace CRMOnlineController
             return iAtividadeDAO.Remover(codAti);
         }
 
-        public List<AtividadeEntity> ObterTodos()
-        {
-            IAtividadeDAO iAtividadeDAO = (IAtividadeDAO)DAOFactory.CreateDAO<IAtividadeDAO>();
-            return iAtividadeDAO.ObterTodos();
-        }
-
         public AtividadeEntity Obter(int codAti)
         {
-            IAtividadeDAO iClienteDAO = (IAtividadeDAO)DAOFactory.CreateDAO<IAtividadeDAO>();
-            return iClienteDAO.Obter(codAti);
+            IAtividadeDAO iAtividadeDAO = (IAtividadeDAO)DAOFactory.CreateDAO<IAtividadeDAO>();
+            return iAtividadeDAO.Obter(codAti);
         }
 
-        public List<AtividadeEntity> Buscar(string busca)
+        public List<AtividadeEntity> ObterTodos(string cpfUsu)
         {
             IAtividadeDAO iAtividadeDAO = (IAtividadeDAO)DAOFactory.CreateDAO<IAtividadeDAO>();
-            return iAtividadeDAO.Buscar(busca);
+            return iAtividadeDAO.ObterTodos(cpfUsu);
+        }
+
+        public List<AtividadeEntity> Buscar(string cpfUsu, string busca)
+        {
+            IAtividadeDAO iAtividadeDAO = (IAtividadeDAO)DAOFactory.CreateDAO<IAtividadeDAO>();
+            return iAtividadeDAO.Buscar(cpfUsu, busca);
+        }
+
+        public AtividadeEntity ObterUltimo()
+        {
+            IAtividadeDAO iAtividadeDAO = (IAtividadeDAO)DAOFactory.CreateDAO<IAtividadeDAO>();
+            return iAtividadeDAO.ObterUltimo();
         }
     }
 }

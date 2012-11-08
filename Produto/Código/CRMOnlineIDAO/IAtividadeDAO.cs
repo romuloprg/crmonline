@@ -9,8 +9,9 @@ namespace CRMOnlineIDAO
         bool Inserir(AtividadeEntity atividade);
         bool Atualizar(AtividadeEntity atividade);
         bool Remover(int codAti);
-        List<AtividadeEntity> ObterTodos();
         AtividadeEntity Obter(int codAti);
-        List<AtividadeEntity> Buscar(string busca);
+        List<AtividadeEntity> ObterTodos(string cpfUsu);
+        List<AtividadeEntity> Buscar(string cpfUsu, string busca);
+        AtividadeEntity ObterUltimo();
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,15 +11,18 @@ namespace CRMOnline
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Executa apenas na primeira carga da página
+            if (Session["nomCar"] != null)
+                if (Session["nomCar"].ToString() == "Proprietário")
+                    panelButton.Visible = false;
+
             if (!Page.IsPostBack)
                 PreencheGrid();
         }
 
         private void PreencheGrid()
         {
-            UsuarioController usuarioController = new UsuarioController();
-            this.EmpregoGridView.DataSource = usuarioController.BuscarContrato(Session["cpf"].ToString());
+            ContratoController contratoController = new ContratoController();
+            this.EmpregoGridView.DataSource = contratoController.ObterTodos(Session["cpfUsu"].ToString());
             this.EmpregoGridView.DataBind();
         }
 

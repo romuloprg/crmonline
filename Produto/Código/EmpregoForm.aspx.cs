@@ -2,8 +2,6 @@
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Configuration;
 using CRMOnlineController;
 using CRMOnlineEntity;
 
@@ -13,7 +11,6 @@ namespace CRMOnline
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Executa apenas na primeira carga da página
             if (!Page.IsPostBack)
             {
                 EmpresaController empresaController = new EmpresaController();
@@ -23,37 +20,26 @@ namespace CRMOnline
                 txtEmpresa.DataBind();
 
                 txtEmpresa.Items.Insert(0, new ListItem("", "0"));
-                
-                preencheCampos();
+                txtEmpresa.Items.Insert(0, new ListItem("Nenhuma", "0"));
+
+                PreencheCampos();
                 txtEmpresa.Focus();
             }
         }
 
-        protected void btnGravar_Click(object sender, EventArgs e)
+        private void PreencheCampos()
         {
-            // Cria a instância
-            UsuarioController usuarioController = new UsuarioController();
+            ContratoController contratoController = new ContratoController();
+            ContratoEntity contrato = contratoController.ObterAtivo(Session["cpfUsu"].ToString());
 
-            if (txtNome.Text == "" || txtCpf.Text == "")
-                this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Preencha todos os campos!');</script>");
-            else
+            txtCpf.Text = Session["cpfUsu"].ToString();
+            txtNome.Text = Session["nomUsu"].ToString();
+            try
             {
-                // Chama método
-                if (Session["cpf"].ToString() != null)
-                {
-                    if (txtEmpresa.SelectedValue == "0")
-                    {
-                        if (usuarioController.RemoverContrato(Session["cpf"].ToString()))
-                            this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Empresa alterada com sucesso!'); window.location.href='Emprego.aspx';</script>");
-                        else
-                            this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Erro na alteração do registro!');</script>");
-                    }
-                    else if (usuarioController.InserirContrato(Session["cpf"].ToString(), txtEmpresa.SelectedValue, 1))
-                        this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Empresa alterada com sucesso!'); window.location.href='Emprego.aspx';</script>");
-                    else
-                        this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Erro na alteração do registro!');</script>");
-                }
+                txtEmpresa.Items.FindByValue(contrato.cnpjEmp).Selected = true;
             }
+            catch
+            { }
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -61,19 +47,37 @@ namespace CRMOnline
             Response.Redirect("~/Emprego.aspx");
         }
 
-        private void preencheCampos()
+        protected void btnGravar_Click(object sender, EventArgs e)
         {
-            UsuarioController usuarioController = new UsuarioController();
-            ContratoEntity contrato = usuarioController.ObterContrato(Session["cpf"].ToString());
+            ContratoController contratoController = new ContratoController();
+            VendedorController vendedorController = new VendedorController();
 
-            txtCpf.Text = Session["cpf"].ToString();
-            txtNome.Text = Session["nome"].ToString();
-            try
+            ContratoEntity contrato = new ContratoEntity();
+            contrato.cpfUsu = Session["cpfUsu"].ToString();
+            contrato.cnpjEmp = txtEmpresa.SelectedValue;
+            contrato.codCar = 1; // 1 -> código de funcionário
+
+            if (txtNome.Text == "" || txtCpf.Text == "")
+                this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Preencha todos os campos!');</script>");
+            else
             {
-                txtEmpresa.Items.FindByValue(contrato.cnpjEmp).Selected = true;
+                if (vendedorController.ObterTodos(Session["cpfUsu"].ToString()).Count <= 0)
+                {
+                    if (txtEmpresa.SelectedValue == "0")
+                    {
+                        if (contratoController.Cancelar(Session["cpfUsu"].ToString()))
+                            this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Contrato finalizado com sucesso!'); window.location.href='Login.aspx';</script>");
+                        else
+                            this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Erro na alteração do registro!');</script>");
+                    }
+                    else if (contratoController.Inserir(contrato))
+                        this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Contrato criado com sucesso!'); window.location.href='Login.aspx';</script>");
+                    else
+                        this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Erro na criação do registro!');</script>");
+                }
+                else
+                    this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Erro na alteração do registro, você ainda é vendedor de alguma empresa!');</script>");
             }
-            catch
-            { }
         }
     }
 }

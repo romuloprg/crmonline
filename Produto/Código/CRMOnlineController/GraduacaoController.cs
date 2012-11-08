@@ -6,7 +6,7 @@ using CRMOnlineController.Factory;
 
 namespace CRMOnlineController
 {
-    public class GraduacaoController
+    public class GraduacaoController : IGraduacaoDAO
     {
         public List<GraduacaoEntity> ObterTodos()
         {

@@ -2,54 +2,78 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="header" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <h2>
-        Listagem de Usuários
+        Cadastro de Usuário
         <br />
     </h2>
-    <br />
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
-            <asp:GridView ID="UsuarioGridView" runat="server" AutoGenerateColumns="False"
-                DataKeyNames="cpfUsu" OnRowDeleting="UsuarioGridView_RowDeleting" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="UsuarioGridView_RowDataBound">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                    <asp:TemplateField HeaderText="CPF" ItemStyle-Width="100px" ItemStyle-HorizontalAlign="Center">
-                        <ItemTemplate>    <%#Eval("cpfUsu") %>    </ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="100px"></ItemStyle>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Nome" ItemStyle-Width="250px" ItemStyle-HorizontalAlign="Center">
-                        <ItemTemplate>    <%#Eval("nomUsu") %>    </ItemTemplate>
-                        <ItemStyle Width="250px"></ItemStyle>
-                    </asp:TemplateField>
-                     <asp:TemplateField HeaderText="Telefone" ItemStyle-Width="150px" ItemStyle-HorizontalAlign="Center">
-                        <ItemTemplate>    <%#Eval("telUsu") %>    </ItemTemplate>
-                        <ItemStyle Width="150px"></ItemStyle>
-                    </asp:TemplateField>
-                     <asp:TemplateField HeaderText="Email" ItemStyle-Width="180px" ItemStyle-HorizontalAlign="Center">
-                        <ItemTemplate>    <%#Eval("emaUsu") %>    </ItemTemplate>
-                        <ItemStyle Width="150px"></ItemStyle>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Formação" ItemStyle-Width="150px" ItemStyle-HorizontalAlign="Center">
-                        <ItemTemplate>    <%#Eval("nomGra") %>    </ItemTemplate>
-                        <ItemStyle Width="150px"></ItemStyle>
-                    </asp:TemplateField>
-                    <asp:ButtonField ButtonType="Image" HeaderText="Editar" ImageUrl="~/Imagem/editar.gif"  />
-                    <asp:CommandField ButtonType ="Image" HeaderText="Deletar" ItemStyle-Width="30px" DeleteImageUrl="Imagem/delete.gif" ShowDeleteButton="True">
-                        <ItemStyle Width="30px"></ItemStyle>
-                    </asp:CommandField>
-                </Columns>
-                <EditRowStyle BackColor="#999999" />
-                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-            </asp:GridView>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <fieldset class="login">
+        <legend>Dados do Usuário</legend>
+        <p>
+            <asp:Label ID="lblCpf" runat="server" Text="CPF: "></asp:Label>
+            <asp:TextBox ID="txtCpf" runat="server" style="margin-left: 74px" 
+                Width="150px" MaxLength="14" Enabled="false"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Label ID="lblNome" runat="server" Text="Nome:"></asp:Label>
+            <asp:TextBox ID="txtNome" runat="server" style="margin-left: 59px" 
+                Width="350px" MaxLength="50"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Label ID="lblEndereco" runat="server" Text="Endereço:"></asp:Label>
+            <asp:TextBox ID="txtEndereco" runat="server" style="margin-left: 40px" 
+                Width="350px" MaxLength="100"></asp:TextBox>
+        </p>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <p>
+                    <asp:Label ID="lblUf" runat="server" Text="UF:"></asp:Label>
+                    <asp:DropDownList ID="txtUf" runat="server" style="margin-left: 80px" AutoPostBack="True" OnSelectedIndexChanged="txtUf_SelectedIndexChanged">
+                        <asp:ListItem Value="0" Text=""></asp:ListItem>
+                    </asp:DropDownList>
+                </p>
+                <p>
+                    <asp:Label ID="lblCidade" runat="server" Text="Cidade:"></asp:Label>
+                    <asp:DropDownList ID="txtCidade" runat="server" style="margin-left: 54px" Width="180px">
+                        <asp:ListItem Value="0" Text=""></asp:ListItem>
+                        <asp:ListItem Value="0">Selecione um estado</asp:ListItem>
+                    </asp:DropDownList>
+                </p>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <p>
+            <asp:Label ID="lblSexo" runat="server" Text="Sexo:"></asp:Label>
+            <asp:DropDownList ID="txtSexo" runat="server" style="margin-left: 67px" Width="100px">
+                <asp:ListItem Value="0" Text=""></asp:ListItem>
+                <asp:ListItem Value="M" Text="Masculino"></asp:ListItem>
+                <asp:ListItem Value="F" Text="Feminino"></asp:ListItem>
+            </asp:DropDownList>
+        </p>
+        <p>
+            <asp:Label ID="lblTelefone" runat="server" Text="Telefone:"></asp:Label>
+            <asp:TextBox ID="txtTelefone" runat="server" style="margin-left: 45px" 
+                Width="200px" MaxLength="14" onkeyup="formataTelefone(this,event);"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Label ID="lblEmail" runat="server" Text="Email:"></asp:Label>
+            <asp:TextBox ID="txtEmail" runat="server" style="margin-left: 64px" 
+                Width="350px" MaxLength="50" TextMode="Email"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Label ID="lblGraduacao" runat="server" Text="Graduação:"></asp:Label>
+            <asp:DropDownList ID="txtGraduacao" runat="server" style="margin-left: 31px" Width="180px">
+                <asp:ListItem Value="0" Text=""></asp:ListItem>
+            </asp:DropDownList>
+        </p>
+        <p>
+            <asp:Label ID="lblSenha" runat="server" Text="Senha:"></asp:Label>
+            <asp:TextBox ID="txtSenha" runat="server" style="margin-left: 60px" 
+                Width="350px" MaxLength="10" TextMode="Password"></asp:TextBox>
+        </p>
+    </fieldset>
+    <p class="submitButton">
+        <asp:Button ID="btnGravar" runat="server" Text="Gravar" Height="40px" Width="84px" OnClick="btnGravar_Click"/>
+        <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" Height="40px" Width="84px" OnClick="btnCancelar_Click"/>
+        <asp:Button ID="btnExcluir" runat="server" Text="Excluir" Height="40px" Width="84px" OnClientClick="if (!window.confirm('Confirma a exclusão deste registro?')) return false;" OnClick="btnExcluir_Click"/>
+    </p>
 </asp:Content>

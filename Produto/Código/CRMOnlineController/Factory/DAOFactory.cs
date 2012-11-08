@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Reflection;
 
 namespace CRMOnlineController.Factory
@@ -10,7 +11,7 @@ namespace CRMOnlineController.Factory
             try
             {
                 // Colocar o caminho para a assembly (CRMOnlineDAO.dll) em um arquivo de configuração
-                Assembly testAssembly = Assembly.LoadFile(System.Configuration.ConfigurationManager.AppSettings["caminhoDll"]);
+                Assembly testAssembly = Assembly.LoadFile(ConfigurationManager.AppSettings["caminhoDll"]);
                 // Colocar o namespace ("CRMOnlineDAO.") em um arquvo de configuração
                 Type calcType = testAssembly.GetType(string.Concat("CRMOnlineDAO.", typeof(GenericType).Name.Substring(1)));
 

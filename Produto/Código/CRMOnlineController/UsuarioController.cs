@@ -6,18 +6,12 @@ using CRMOnlineController.Factory;
 
 namespace CRMOnlineController
 {
-    public class UsuarioController
+    public class UsuarioController : IUsuarioDAO
     {
         public bool Inserir(UsuarioEntity usuario)
         {
             IUsuarioDAO iUsuarioDAO = (IUsuarioDAO)DAOFactory.CreateDAO<IUsuarioDAO>();
             return iUsuarioDAO.Inserir(usuario);
-        }
-
-        public bool InserirContrato(string cpfUsu, string cnpjEmp, int codCar)
-        {
-            IUsuarioDAO iUsuarioDAO = (IUsuarioDAO)DAOFactory.CreateDAO<IUsuarioDAO>();
-            return iUsuarioDAO.InserirContrato(cpfUsu, cnpjEmp, codCar);
         }
 
         public bool Atualizar(UsuarioEntity usuario)
@@ -26,22 +20,10 @@ namespace CRMOnlineController
             return iUsuarioDAO.Atualizar(usuario);
         }
 
-        public bool AtualizarContrato(string cpfUsu, string cnpjEmp, int codCar)
-        {
-            IUsuarioDAO iUsuarioDAO = (IUsuarioDAO)DAOFactory.CreateDAO<IUsuarioDAO>();
-            return iUsuarioDAO.AtualizarContrato(cpfUsu, cnpjEmp, codCar);
-        }
-
         public bool Remover(string cpfUsu)
         {
             IUsuarioDAO iUsuarioDAO = (IUsuarioDAO)DAOFactory.CreateDAO<IUsuarioDAO>();
             return iUsuarioDAO.Remover(cpfUsu);
-        }
-
-        public bool RemoverContrato(string cpfUsu)
-        {
-            IUsuarioDAO iUsuarioDAO = (IUsuarioDAO)DAOFactory.CreateDAO<IUsuarioDAO>();
-            return iUsuarioDAO.RemoverContrato(cpfUsu);
         }
 
         public UsuarioEntity Obter(string cpfUsu)
@@ -50,25 +32,31 @@ namespace CRMOnlineController
             return iUsuarioDAO.Obter(cpfUsu);
         }
 
-        public ContratoEntity ObterContrato(string cpfUsu)
+        public List<UsuarioEntity> ObterFuncionarios(string cpfUsu)
         {
             IUsuarioDAO iUsuarioDAO = (IUsuarioDAO)DAOFactory.CreateDAO<IUsuarioDAO>();
-            return iUsuarioDAO.ObterContrato(cpfUsu);
+            return iUsuarioDAO.ObterFuncionarios(cpfUsu);
         }
 
-        public List<UsuarioEntity> Buscar(string cpfUsu)
+        public List<UsuarioEntity> ObterParteFuncionarios(string cpfUsu)
         {
             IUsuarioDAO iUsuarioDAO = (IUsuarioDAO)DAOFactory.CreateDAO<IUsuarioDAO>();
-            return iUsuarioDAO.Buscar(cpfUsu);
+            return iUsuarioDAO.ObterParteFuncionarios(cpfUsu);
         }
 
-        public List<ContratoEntity> BuscarContrato(string cpfUsu)
+        public List<UsuarioEntity> ObterTodosFuncionarios(string cnpjEmp)
         {
             IUsuarioDAO iUsuarioDAO = (IUsuarioDAO)DAOFactory.CreateDAO<IUsuarioDAO>();
-            return iUsuarioDAO.BuscarContrato(cpfUsu);
+            return iUsuarioDAO.ObterTodosFuncionarios(cnpjEmp);
+        }
+        
+        public List<UsuarioEntity> BuscarFuncionarios(string cnpjEmp, string busca)
+        {
+            IUsuarioDAO iUsuarioDAO = (IUsuarioDAO)DAOFactory.CreateDAO<IUsuarioDAO>();
+            return iUsuarioDAO.BuscarFuncionarios(cnpjEmp, busca);
         }
 
-        public List<string> Validar(string emaUsu, string senUsu)
+        public UsuarioEntity Validar(string emaUsu, string senUsu)
         {
             IUsuarioDAO iUsuarioDAO = (IUsuarioDAO)DAOFactory.CreateDAO<IUsuarioDAO>();
             return iUsuarioDAO.Validar(emaUsu, senUsu);

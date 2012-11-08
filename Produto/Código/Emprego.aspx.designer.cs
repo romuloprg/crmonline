@@ -13,13 +13,13 @@ namespace CRMOnline {
     public partial class Emprego {
         
         /// <summary>
-        /// Controle ScriptManager1.
+        /// Controle panelButton.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.Panel panelButton;
         
         /// <summary>
         /// Controle btnEditar.
@@ -29,15 +29,6 @@ namespace CRMOnline {
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEditar;
-        
-        /// <summary>
-        /// Controle UpdatePanel1.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
         /// Controle EmpregoGridView.

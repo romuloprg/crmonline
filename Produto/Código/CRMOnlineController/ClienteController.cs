@@ -6,18 +6,12 @@ using CRMOnlineController.Factory;
 
 namespace CRMOnlineController
 {
-    public class ClienteController
+    public class ClienteController : IClienteDAO
     {
         public bool Inserir(ClienteEntity cliente)
         {
             IClienteDAO iClienteDAO = (IClienteDAO)DAOFactory.CreateDAO<IClienteDAO>();
             return iClienteDAO.Inserir(cliente);
-        }
-
-        public bool Atualizar(ClienteEntity cliente)
-        {
-            IClienteDAO iClienteDAO = (IClienteDAO)DAOFactory.CreateDAO<IClienteDAO>();
-            return iClienteDAO.Atualizar(cliente);
         }
 
         public bool Remover(int codCli)
@@ -26,22 +20,22 @@ namespace CRMOnlineController
             return iClienteDAO.Remover(codCli);
         }
 
-        public List<ClienteEntity> ObterTodos()
-        {
-            IClienteDAO iClienteDAO = (IClienteDAO)DAOFactory.CreateDAO<IClienteDAO>();
-            return iClienteDAO.ObterTodos();
-        }
-
         public ClienteEntity Obter(int codCli)
         {
             IClienteDAO iClienteDAO = (IClienteDAO)DAOFactory.CreateDAO<IClienteDAO>();
             return iClienteDAO.Obter(codCli);
         }
 
-        public List<ClienteEntity> Buscar(string busca)
+        public List<ClienteEntity> ObterTodos(string cnpjEmp)
         {
             IClienteDAO iClienteDAO = (IClienteDAO)DAOFactory.CreateDAO<IClienteDAO>();
-            return iClienteDAO.Buscar(busca);
+            return iClienteDAO.ObterTodos(cnpjEmp);
+        }
+
+        public List<ClienteEntity> Buscar(string cnpjEmp, string busca)
+        {
+            IClienteDAO iClienteDAO = (IClienteDAO)DAOFactory.CreateDAO<IClienteDAO>();
+            return iClienteDAO.Buscar(cnpjEmp, busca);
         }
     }
 }

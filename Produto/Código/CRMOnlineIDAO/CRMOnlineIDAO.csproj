@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E8FDAFF6-866C-4A9F-A062-26990387292D}</ProjectGuid>
+    <ProjectGuid>{0A58E4BB-D4A6-415F-BE7F-3735F2BF5617}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CRMOnlineIDAO</RootNamespace>
     <AssemblyName>CRMOnlineIDAO</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,7 +28,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -42,17 +39,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ILembreteDAO.cs" />
+    <Compile Include="IParticipanteDAO.cs" />
     <Compile Include="IAtividadeDAO.cs" />
-    <Compile Include="IGraduacaoDAO.cs" />
+    <Compile Include="IVendedorDAO.cs" />
     <Compile Include="IClienteDAO.cs" />
+    <Compile Include="IContratoDAO.cs" />
     <Compile Include="IEmpresaDAO.cs" />
-    <Compile Include="IExtrasDAO.cs" />
-    <Compile Include="IUsuarioDAO.cs" />
+    <Compile Include="IExtraDAO.cs" />
+    <Compile Include="IGraduacaoDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IUsuarioDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CRMOnlineEntity\CRMOnlineEntity.csproj">
-      <Project>{1c60e3a0-10f6-4159-8547-45a0d32b391f}</Project>
+      <Project>{145734b4-26a2-4081-b3b1-3e3b68a49004}</Project>
       <Name>CRMOnlineEntity</Name>
     </ProjectReference>
   </ItemGroup>

@@ -13,6 +13,15 @@ namespace CRMOnline {
     public partial class Site {
         
         /// <summary>
+        /// Controle Head1.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+        
+        /// <summary>
         /// Controle header.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace CRMOnline {
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder header;
+        
+        /// <summary>
+        /// Controle Form1.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm Form1;
         
         /// <summary>
         /// Controle lblLogin.

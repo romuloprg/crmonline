@@ -18,12 +18,10 @@ namespace CRMOnlineDAO
 
         public bool Inserir(UsuarioEntity usuario)
         {
-            //TODO: Código para inserir Usuario
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("usuario_Inserir", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("INSERT INTO Usuario VALUES (@cpfUsu, @codGra, @nomUsu, @sexUsu, @endUsu, @cidUsu, @ufUsu, @telUsu, @emaUsu, @senUsu)", connection);
                 command.Parameters.AddWithValue("@cpfUsu", usuario.cpfUsu);
                 command.Parameters.AddWithValue("@codGra", usuario.codGra);
                 command.Parameters.AddWithValue("@nomUsu", usuario.nomUsu);
@@ -40,26 +38,10 @@ namespace CRMOnlineDAO
             {
                 return false;
             }
-
-            return true;
-        }
-
-        public bool InserirContrato(string cpfUsu, string cnpjEmp, int codCar)
-        {
-            //TODO: Código para atualizar usuário
-            try
+            finally
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand("contrato_Inserir", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@cpfUsu", cpfUsu);
-                command.Parameters.AddWithValue("@cnpjEmp", cnpjEmp);
-                command.Parameters.AddWithValue("@codCar", codCar);
-                command.ExecuteNonQuery();
-            }
-            catch
-            {
-                return false;
+                if (connection != null)
+                    connection.Close();
             }
 
             return true;
@@ -67,12 +49,10 @@ namespace CRMOnlineDAO
 
         public bool Atualizar(UsuarioEntity usuario)
         {
-            //TODO: Código para atualizar usuário
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("usuario_Atualizar", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("UPDATE Usuario SET codGra = @codGra, nomUsu = @nomUsu, sexUsu = @sexUsu, endUsu = @endUsu, cidUsu = @cidUsu, ufUsu = @ufUsu, telUsu = @telUsu, emaUsu = @emaUsu, senUsu = @senUsu WHERE cpfUsu = @cpfUsu", connection);
                 command.Parameters.AddWithValue("@cpfUsu", usuario.cpfUsu);
                 command.Parameters.AddWithValue("@codGra", usuario.codGra);
                 command.Parameters.AddWithValue("@nomUsu", usuario.nomUsu);
@@ -89,26 +69,10 @@ namespace CRMOnlineDAO
             {
                 return false;
             }
-
-            return true;
-        }
-
-        public bool AtualizarContrato(string cpfUsu, string cnpjEmp, int codCar)
-        {
-            //TODO: Código para atualizar usuário
-            try
+            finally
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand("contrato_Atualizar", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@cpfUsu", cpfUsu);
-                command.Parameters.AddWithValue("@cnpjEmp", cnpjEmp);
-                command.Parameters.AddWithValue("@codCar", codCar);
-                command.ExecuteNonQuery();
-            }
-            catch
-            {
-                return false;
+                if (connection != null)
+                    connection.Close();
             }
 
             return true;
@@ -116,32 +80,10 @@ namespace CRMOnlineDAO
 
         public bool Remover(string cpfUsu)
         {
-            //TODO: código para remover usuário
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("usuario_Remover", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@cpfUsu", cpfUsu);
-                command.ExecuteNonQuery();
-                RemoverContrato(cpfUsu);
-            }
-            catch
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public bool RemoverContrato(string cpfUsu)
-        {
-            //TODO: código para remover usuário
-            try
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand("Contrato_Remover", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("DELETE FROM Usuario WHERE cpfUsu = @cpfUsu", connection);
                 command.Parameters.AddWithValue("@cpfUsu", cpfUsu);
                 command.ExecuteNonQuery();
             }
@@ -149,56 +91,43 @@ namespace CRMOnlineDAO
             {
                 return false;
             }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
 
             return true;
-        }
-
-        private T ObterValor<T>(IDataReader reader, int indice, T valorDefault)
-        {
-            try
-            {
-                //TODO: código para selecionar valores dos registros
-                if (!reader.IsDBNull(indice))
-                    return (T)reader.GetValue(indice);
-                else
-                    return valorDefault;
-            }
-            catch
-            {
-                return valorDefault;
-            }
         }
 
         public UsuarioEntity Obter(string cpfUsu)
         {
-            //TODO: código para selecionar um usuário pelo cpf
             UsuarioEntity usuario = new UsuarioEntity();
 
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("usuario_Obter", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("SELECT DISTINCT Usuario.cpfUsu, nomUsu, sexUsu, endUsu, cidUsu, ufUsu, telUsu, emaUsu, senUsu, Usuario.codGra, nomGra, Contrato.codCar, nomCar, Contrato.cnpjEmp, nomEmp FROM Usuario LEFT JOIN Graduacao ON Usuario.codGra = Graduacao.codGra LEFT JOIN Contrato ON Usuario.cpfUsu = Contrato.cpfUsu LEFT JOIN Cargo ON Contrato.codCar = Cargo.codCar LEFT JOIN Empresa ON Contrato.cnpjEmp = Empresa.cnpjEmp WHERE Usuario.cpfUsu = @cpfUsu ORDER BY nomUsu", connection);
                 command.Parameters.AddWithValue("@cpfUsu", cpfUsu);
                 IDataReader reader = command.ExecuteReader();
 
                 reader.Read();
 
-                usuario.cpfUsu = this.ObterValor<string>(reader, 0, null);
-                usuario.nomUsu = this.ObterValor<string>(reader, 1, null);
-                usuario.sexUsu = this.ObterValor<string>(reader, 2, null);
-                usuario.endUsu = this.ObterValor<string>(reader, 3, null);
-                usuario.cidUsu = this.ObterValor<string>(reader, 4, null);
-                usuario.ufUsu = this.ObterValor<string>(reader, 5, null);
-                usuario.telUsu = this.ObterValor<string>(reader, 6, null);
-                usuario.emaUsu = this.ObterValor<string>(reader, 7, null);
-                usuario.senUsu = this.ObterValor<string>(reader, 8, null);
-                usuario.codGra = this.ObterValor<int>(reader, 9, 0);
-                usuario.nomGra = this.ObterValor<string>(reader, 10, null);
-                usuario.codCar = this.ObterValor<int>(reader, 11, 0);
-                usuario.nomCar = this.ObterValor<string>(reader, 12, null);
-                usuario.cnpjEmp = this.ObterValor<string>(reader, 13, null);
-                usuario.nomEmp = this.ObterValor<string>(reader, 14, null);
+                usuario.cpfUsu = ExtraDAO.ObterValor<string>(reader, 0, null);
+                usuario.nomUsu = ExtraDAO.ObterValor<string>(reader, 1, null);
+                usuario.sexUsu = ExtraDAO.ObterValor<string>(reader, 2, null);
+                usuario.endUsu = ExtraDAO.ObterValor<string>(reader, 3, null);
+                usuario.cidUsu = ExtraDAO.ObterValor<string>(reader, 4, null);
+                usuario.ufUsu = ExtraDAO.ObterValor<string>(reader, 5, null);
+                usuario.telUsu = ExtraDAO.ObterValor<string>(reader, 6, null);
+                usuario.emaUsu = ExtraDAO.ObterValor<string>(reader, 7, null);
+                usuario.senUsu = ExtraDAO.ObterValor<string>(reader, 8, null);
+                usuario.codGra = ExtraDAO.ObterValor<int>(reader, 9, 0);
+                usuario.nomGra = ExtraDAO.ObterValor<string>(reader, 10, null);
+                usuario.codCar = ExtraDAO.ObterValor<int>(reader, 11, 0);
+                usuario.nomCar = ExtraDAO.ObterValor<string>(reader, 12, null);
+                usuario.cnpjEmp = ExtraDAO.ObterValor<string>(reader, 13, null);
+                usuario.nomEmp = ExtraDAO.ObterValor<string>(reader, 14, null);
             }
             finally
             {
@@ -209,49 +138,14 @@ namespace CRMOnlineDAO
             return usuario;
         }
 
-        public ContratoEntity ObterContrato(string cpfUsu)
+        public List<UsuarioEntity> ObterFuncionarios(string cpfUsu)
         {
-            ContratoEntity contrato = new ContratoEntity();
-
-            try
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand("contrato_Obter", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@cpfUsu", cpfUsu);
-                IDataReader reader = command.ExecuteReader();
-
-                reader.Read();
-
-                contrato.codCtr = this.ObterValor<int>(reader, 0, 0);
-                contrato.cpfUsu = this.ObterValor<string>(reader, 1, null);
-                contrato.nomUsu = this.ObterValor<string>(reader, 2, null);
-                contrato.cnpjEmp = this.ObterValor<string>(reader, 3, null);
-                contrato.nomEmp = this.ObterValor<string>(reader, 4, null);
-                contrato.codCar = this.ObterValor<int>(reader, 5, 0);
-                contrato.nomCar = this.ObterValor<string>(reader, 6, null);
-                contrato.iniCtr = this.ObterValor<DateTime>(reader, 7, new DateTime()).ToShortDateString();
-                contrato.fimCtr = this.ObterValor<DateTime>(reader, 8, new DateTime()).ToShortDateString();
-            }
-            finally
-            {
-                if (connection != null)
-                    connection.Close();
-            }
-
-            return contrato;
-        }
-
-        public List<UsuarioEntity> Buscar(string cpfUsu)
-        {
-            //TODO: código para selecionar usuários
             List<UsuarioEntity> usuarios = new List<UsuarioEntity>();
 
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("usuario_Buscar", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("SELECT DISTINCT Usuario.cpfUsu, nomUsu, Cargo.codCar, nomCar, Contrato.cnpjEmp, nomEmp FROM Usuario LEFT JOIN Contrato ON Usuario.cpfUsu = Contrato.cpfUsu LEFT JOIN Cargo ON Contrato.codCar = Cargo.codCar LEFT JOIN Empresa ON Contrato.cnpjEmp = Empresa.cnpjEmp WHERE Usuario.cpfUsu <> @cpfUsu AND fimCtr is NULL AND Contrato.codCar <> 3 AND Contrato.cnpjEmp = (SELECT DISTINCT cnpjEmp FROM Contrato WHERE cpfUsu = @cpfUsu) ORDER BY nomUsu", connection);
                 command.Parameters.AddWithValue("@cpfUsu", cpfUsu);
                 IDataReader reader = command.ExecuteReader();
 
@@ -259,12 +153,12 @@ namespace CRMOnlineDAO
                 {
                     UsuarioEntity usuario = new UsuarioEntity();
 
-                    usuario.cpfUsu = this.ObterValor<string>(reader, 0, null);
-                    usuario.nomUsu = this.ObterValor<string>(reader, 1, null);
-                    usuario.codCar = this.ObterValor<int>(reader, 2, 0);
-                    usuario.nomCar = this.ObterValor<string>(reader, 3, null);
-                    usuario.cnpjEmp = this.ObterValor<string>(reader, 4, null);
-                    usuario.nomEmp = this.ObterValor<string>(reader, 5, null);
+                    usuario.cpfUsu = ExtraDAO.ObterValor<string>(reader, 0, null);
+                    usuario.nomUsu = ExtraDAO.ObterValor<string>(reader, 1, null);
+                    usuario.codCar = ExtraDAO.ObterValor<int>(reader, 2, 0);
+                    usuario.nomCar = ExtraDAO.ObterValor<string>(reader, 3, null);
+                    usuario.cnpjEmp = ExtraDAO.ObterValor<string>(reader, 4, null);
+                    usuario.nomEmp = ExtraDAO.ObterValor<string>(reader, 5, null);
 
                     usuarios.Add(usuario);
                 }
@@ -278,34 +172,29 @@ namespace CRMOnlineDAO
             return usuarios;
         }
 
-        public List<ContratoEntity> BuscarContrato(string cpfUsu)
+        public List<UsuarioEntity> ObterParteFuncionarios(string cpfUsu)
         {
-            //TODO: código para selecionar usuários
-            List<ContratoEntity> contratos = new List<ContratoEntity>();
+            List<UsuarioEntity> usuarios = new List<UsuarioEntity>();
 
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("contrato_Buscar", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("SELECT DISTINCT Usuario.cpfUsu, nomUsu, Cargo.codCar, nomCar, Contrato.cnpjEmp, nomEmp FROM Usuario LEFT JOIN Contrato ON Usuario.cpfUsu = Contrato.cpfUsu LEFT JOIN Cargo ON Contrato.codCar = Cargo.codCar LEFT JOIN Empresa ON Contrato.cnpjEmp = Empresa.cnpjEmp WHERE Usuario.cpfUsu <> @cpfUsu AND fimCtr is NULL AND Contrato.cnpjEmp = (SELECT DISTINCT cnpjEmp FROM Contrato WHERE cpfUsu = @cpfUsu) ORDER BY nomUsu", connection);
                 command.Parameters.AddWithValue("@cpfUsu", cpfUsu);
                 IDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    ContratoEntity contrato = new ContratoEntity();
+                    UsuarioEntity usuario = new UsuarioEntity();
 
-                    contrato.codCtr = this.ObterValor<int>(reader, 0, 0);
-                    contrato.cpfUsu = this.ObterValor<string>(reader, 1, null);
-                    contrato.nomUsu = this.ObterValor<string>(reader, 2, null);
-                    contrato.cnpjEmp = this.ObterValor<string>(reader, 3, null);
-                    contrato.nomEmp = this.ObterValor<string>(reader, 4, null);
-                    contrato.codCar = this.ObterValor<int>(reader, 5, 0);
-                    contrato.nomCar = this.ObterValor<string>(reader, 6, null);
-                    contrato.iniCtr = this.ObterValor<DateTime>(reader, 7, new DateTime()).ToShortDateString();
-                    contrato.fimCtr = this.ObterValor<DateTime>(reader, 8, new DateTime()).ToShortDateString();
+                    usuario.cpfUsu = ExtraDAO.ObterValor<string>(reader, 0, null);
+                    usuario.nomUsu = ExtraDAO.ObterValor<string>(reader, 1, null);
+                    usuario.codCar = ExtraDAO.ObterValor<int>(reader, 2, 0);
+                    usuario.nomCar = ExtraDAO.ObterValor<string>(reader, 3, null);
+                    usuario.cnpjEmp = ExtraDAO.ObterValor<string>(reader, 4, null);
+                    usuario.nomEmp = ExtraDAO.ObterValor<string>(reader, 5, null);
 
-                    contratos.Add(contrato);
+                    usuarios.Add(usuario);
                 }
             }
             finally
@@ -314,28 +203,33 @@ namespace CRMOnlineDAO
                     connection.Close();
             }
 
-            return contratos;
+            return usuarios;
         }
 
-        public List<string> Validar(string emaUsu, string senUsu)
+        public List<UsuarioEntity> ObterTodosFuncionarios(string cnpjEmp)
         {
-            string cpfUsu = null;
-            string nomUsu = null;
-            string nomCar = null;
+            List<UsuarioEntity> usuarios = new List<UsuarioEntity>();
 
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("usuario_Validar", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@emaUsu", emaUsu);
-                command.Parameters.AddWithValue("@senUsu", senUsu);
+                SqlCommand command = new SqlCommand("SELECT DISTINCT Usuario.cpfUsu, nomUsu, Cargo.codCar, nomCar, Contrato.cnpjEmp, nomEmp FROM Usuario LEFT JOIN Contrato ON Usuario.cpfUsu = Contrato.cpfUsu LEFT JOIN Cargo ON Contrato.codCar = Cargo.codCar LEFT JOIN Empresa ON Contrato.cnpjEmp = Empresa.cnpjEmp WHERE fimCtr is NULL AND Contrato.cnpjEmp = @cnpjEmp ORDER BY nomUsu", connection);
+                command.Parameters.AddWithValue("@cnpjEmp", cnpjEmp);
                 IDataReader reader = command.ExecuteReader();
 
-                reader.Read();
-                cpfUsu = this.ObterValor<string>(reader, 0, null);
-                nomUsu = this.ObterValor<string>(reader, 1, null);
-                nomCar = this.ObterValor<string>(reader, 2, null);
+                while (reader.Read())
+                {
+                    UsuarioEntity usuario = new UsuarioEntity();
+
+                    usuario.cpfUsu = ExtraDAO.ObterValor<string>(reader, 0, null);
+                    usuario.nomUsu = ExtraDAO.ObterValor<string>(reader, 1, null);
+                    usuario.codCar = ExtraDAO.ObterValor<int>(reader, 2, 0);
+                    usuario.nomCar = ExtraDAO.ObterValor<string>(reader, 3, null);
+                    usuario.cnpjEmp = ExtraDAO.ObterValor<string>(reader, 4, null);
+                    usuario.nomEmp = ExtraDAO.ObterValor<string>(reader, 5, null);
+
+                    usuarios.Add(usuario);
+                }
             }
             finally
             {
@@ -343,12 +237,72 @@ namespace CRMOnlineDAO
                     connection.Close();
             }
 
-            List<string> lista = new List<string>();
-            lista.Add(cpfUsu);
-            lista.Add(nomUsu);
-            lista.Add(nomCar);
+            return usuarios;
+        }
 
-            return lista;
+        public List<UsuarioEntity> BuscarFuncionarios(string cpfUsu, string busca)
+        {
+            List<UsuarioEntity> usuarios = new List<UsuarioEntity>();
+
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT DISTINCT Usuario.cpfUsu, nomUsu, Cargo.codCar, nomCar, Contrato.cnpjEmp, nomEmp FROM Usuario LEFT JOIN Contrato ON Usuario.cpfUsu = Contrato.cpfUsu LEFT JOIN Cargo ON Contrato.codCar = Cargo.codCar LEFT JOIN Empresa ON Contrato.cnpjEmp = Empresa.cnpjEmp WHERE Usuario.cpfUsu <> @cpfUsu AND fimCtr is NULL AND Contrato.codCar <> 3 AND Contrato.cnpjEmp = (SELECT DISTINCT cnpjEmp FROM Contrato WHERE cpfUsu = @cpfUsu) AND nomUsu LIKE CONCAT('%', @busca, '%') ORDER BY nomUsu", connection);
+                command.Parameters.AddWithValue("@cpfUsu", cpfUsu);
+                command.Parameters.AddWithValue("@busca", busca);
+                IDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    UsuarioEntity usuario = new UsuarioEntity();
+
+                    usuario.cpfUsu = ExtraDAO.ObterValor<string>(reader, 0, null);
+                    usuario.nomUsu = ExtraDAO.ObterValor<string>(reader, 1, null);
+                    usuario.codCar = ExtraDAO.ObterValor<int>(reader, 2, 0);
+                    usuario.nomCar = ExtraDAO.ObterValor<string>(reader, 3, null);
+                    usuario.cnpjEmp = ExtraDAO.ObterValor<string>(reader, 4, null);
+                    usuario.nomEmp = ExtraDAO.ObterValor<string>(reader, 5, null);
+
+                    usuarios.Add(usuario);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+
+            return usuarios;
+        }
+
+        public UsuarioEntity Validar(string emaUsu, string senUsu)
+        {
+            UsuarioEntity usuario = new UsuarioEntity();
+
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT DISTINCT Usuario.cpfUsu, nomUsu, codCar, nomCar, cnpjEmp, nomEmp FROM Usuario LEFT JOIN (SELECT DISTINCT cpfUsu, Cargo.codCar, nomCar, Contrato.cnpjEmp, nomEmp FROM Contrato LEFT JOIN Cargo ON Contrato.codCar = Cargo.codCar LEFT JOIN Empresa ON Contrato.cnpjEmp = Empresa.cnpjEmp WHERE fimCtr IS NULL) AS Result ON Usuario.cpfUsu = Result.cpfUsu WHERE emaUsu = @emaUsu AND senUsu = @senUsu ORDER BY nomUsu", connection);
+                command.Parameters.AddWithValue("@emaUsu", emaUsu);
+                command.Parameters.AddWithValue("@senUsu", senUsu);
+                IDataReader reader = command.ExecuteReader();
+
+                reader.Read();
+
+                usuario.cpfUsu = ExtraDAO.ObterValor<string>(reader, 0, null);
+                usuario.nomUsu = ExtraDAO.ObterValor<string>(reader, 1, null);
+                usuario.codCar = ExtraDAO.ObterValor<int>(reader, 2, 0);
+                usuario.nomCar = ExtraDAO.ObterValor<string>(reader, 3, null);
+                usuario.cnpjEmp = ExtraDAO.ObterValor<string>(reader, 4, null);
+                usuario.nomEmp = ExtraDAO.ObterValor<string>(reader, 5, null);
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+
+            return usuario;
         }
     }
 }

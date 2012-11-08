@@ -8,7 +8,7 @@
         <br />
     </h2>
     <h3>
-        <asp:Button ID="btnNovo" runat="server" Text="NOVA ATIVIDADE" Height="40px" Width="120px" OnClick="btnNovo_Click"/>
+        <asp:Button ID="btnNovo" runat="server" Text="NOVA ATIVIDADE" Height="40px" Width="130px" OnClick="btnNovo_Click"/>
         <br />
     </h3>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -21,37 +21,38 @@
                 </p>
             </fieldset>
             <asp:GridView ID="AtividadeGridView" runat="server" AutoGenerateColumns="False"
-                DataKeyNames="codAti" OnRowDeleting="AtividadeGridView_RowDeleting" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="AtividadeGridView_RowDataBound">
+                DataKeyNames="codAti" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="AtividadeGridView_RowDataBound" OnRowDeleting="AtividadeGridView_RowDeleting">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:TemplateField HeaderText="Cod." ItemStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
+                    <asp:TemplateField HeaderText="Código" ItemStyle-Width="50px" ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>    <%#Eval("codAti") %>    </ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="40px"></ItemStyle>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Descrição" ItemStyle-Width="200px" ItemStyle-HorizontalAlign="Center">
+                    <asp:TemplateField HeaderText="Cliente" ItemStyle-Width="200px">
+                        <ItemTemplate>    <%#Eval("nomCli") %>    </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Descrição" ItemStyle-Width="350px">
                         <ItemTemplate>    <%#Eval("desAti") %>    </ItemTemplate>
-                        <ItemStyle Width="200px"></ItemStyle>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Tipo" ItemStyle-Width="150px" ItemStyle-HorizontalAlign="Center">
+                    <asp:TemplateField HeaderText="Tipo" ItemStyle-Width="100px">
                         <ItemTemplate>    <%#Eval("tipAti") %>    </ItemTemplate>
-                        <ItemStyle Width="150px"></ItemStyle>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Data" ItemStyle-Width="150px" ItemStyle-HorizontalAlign="Center">
+                    <asp:TemplateField HeaderText="Data" ItemStyle-Width="70px" ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>    <%#Eval("datAti") %>    </ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="150px"></ItemStyle>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Hora" ItemStyle-Width="150px" ItemStyle-HorizontalAlign="Center">
+                    <asp:TemplateField HeaderText="Horário" ItemStyle-Width="70px" ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>    <%#Eval("horAti") %>    </ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="150px"></ItemStyle>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Duração" ItemStyle-Width="150px" ItemStyle-HorizontalAlign="Center">
-                        <ItemTemplate>    <%#Eval("durAti") %>  hora(s)  </ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="150px"></ItemStyle>
+                    <asp:TemplateField HeaderText="Lembr." ItemStyle-Width="50px" ItemStyle-HorizontalAlign="Center">
+                        <ItemTemplate>
+                            <a href="Lembrete.aspx?codAti=<%#Eval("codAti") %>"> <img alt="Lembr." src="Imagem/clock.gif" /> </a>
+                        </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:ButtonField ButtonType="Image" HeaderText="Editar" ImageUrl="~/Imagem/editar.gif"  />
-                    <asp:CommandField ButtonType ="Image" HeaderText="Deletar" ItemStyle-Width="30px" DeleteImageUrl="Imagem/delete.gif" ShowDeleteButton="True">
-                        <ItemStyle Width="30px"></ItemStyle>
-                    </asp:CommandField>
+                    <asp:TemplateField HeaderText="Editar" ItemStyle-Width="50px" ItemStyle-HorizontalAlign="Center">
+                        <ItemTemplate>
+                            <a href="AtividadeForm.aspx?codAti=<%#Eval("codAti") %>"> <img alt="Editar" src="Imagem/editar.gif" /> </a>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:CommandField ButtonType="Image" DeleteImageUrl="~/Imagem/delete.gif" HeaderText="Excluir" ShowDeleteButton="True" />
                 </Columns>
                 <EditRowStyle BackColor="#999999" />
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

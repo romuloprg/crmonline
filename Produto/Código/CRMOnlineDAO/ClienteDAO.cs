@@ -18,46 +18,22 @@ namespace CRMOnlineDAO
 
         public bool Inserir(ClienteEntity cliente)
         {
-            //TODO: Código para inserir cliente
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("cliente_Inserir", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@nomCli", cliente.nomCli);
-                command.Parameters.AddWithValue("@endCli", cliente.endCli);
-                command.Parameters.AddWithValue("@cidCli", cliente.cidCli);
-                command.Parameters.AddWithValue("@ufCli", cliente.ufCli);
+                SqlCommand command = new SqlCommand("INSERT INTO Cliente VALUES (@cnpjEmp, @cnpjCli)", connection);
                 command.Parameters.AddWithValue("@cnpjEmp", cliente.cnpjEmp);
+                command.Parameters.AddWithValue("@cnpjCli", cliente.cnpjCli);
                 command.ExecuteNonQuery();
             }
             catch
             {
                 return false;
             }
-
-            return true;
-        }
-
-        public bool Atualizar(ClienteEntity cliente)
-        {
-            //TODO: Código para atualizar cliente
-            try
+            finally
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand("cliente_Atualizar", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@codCli", cliente.codCli);
-                command.Parameters.AddWithValue("@nomCli", cliente.nomCli);
-                command.Parameters.AddWithValue("@endCli", cliente.endCli);
-                command.Parameters.AddWithValue("@cidCli", cliente.cidCli);
-                command.Parameters.AddWithValue("@ufCli", cliente.ufCli);
-                command.Parameters.AddWithValue("@cnpjEmp", cliente.cnpjEmp);
-                command.ExecuteNonQuery();
-            }
-            catch
-            {
-                return false;
+                if (connection != null)
+                    connection.Close();
             }
 
             return true;
@@ -65,12 +41,10 @@ namespace CRMOnlineDAO
 
         public bool Remover(int codCli)
         {
-            //TODO: código para remover cliente
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("cliente_Remover", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("DELETE FROM Cliente WHERE codCli = @codCli", connection);
                 command.Parameters.AddWithValue("@codCli", codCli);
                 command.ExecuteNonQuery();
             }
@@ -78,51 +52,69 @@ namespace CRMOnlineDAO
             {
                 return false;
             }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
 
             return true;
         }
 
-        private T ObterValor<T>(IDataReader reader, int indice, T valorDefault)
+        public ClienteEntity Obter(int codCli)
         {
+            ClienteEntity cliente = new ClienteEntity();
+
             try
             {
-                //TODO: código para selecionar valores dos registros
-                if (!reader.IsDBNull(indice))
-                    return (T)reader.GetValue(indice);
-                else
-                    return valorDefault;
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT DISTINCT Cliente.codCli, Cliente.cnpjEmp, Cliente.cnpjCli, nomEmp, nomCli, codVen, Vendedor.cpfUsu AS cpfVen, nomUsu AS nomVen FROM Cliente LEFT JOIN (SELECT DISTINCT cnpjEmp, nomEmp FROM Empresa) AS Empresa1 ON Empresa1.cnpjEmp = Cliente.cnpjEmp LEFT JOIN (SELECT DISTINCT cnpjEmp AS cnpjCli, nomEmp AS nomCli FROM Empresa) AS Empresa2 ON Empresa2.cnpjCli = Cliente.cnpjCli LEFT JOIN Vendedor ON Vendedor.codCli = Cliente.codCli LEFT JOIN Usuario ON Usuario.cpfUsu = Vendedor.cpfUsu WHERE Cliente.codCli = @codCli ORDER BY nomCli", connection);
+                command.Parameters.AddWithValue("@codCli", codCli);
+                IDataReader reader = command.ExecuteReader();
+
+                reader.Read();
+
+                cliente.codCli = ExtraDAO.ObterValor<int>(reader, 0, 0);
+                cliente.cnpjEmp = ExtraDAO.ObterValor<string>(reader, 1, null);
+                cliente.cnpjCli = ExtraDAO.ObterValor<string>(reader, 2, null);
+                cliente.nomEmp = ExtraDAO.ObterValor<string>(reader, 3, null);
+                cliente.nomCli = ExtraDAO.ObterValor<string>(reader, 4, null);
+                cliente.codVen = ExtraDAO.ObterValor<int>(reader, 5, 0);
+                cliente.cpfVen = ExtraDAO.ObterValor<string>(reader, 6, null);
+                cliente.nomVen = ExtraDAO.ObterValor<string>(reader, 7, null);
             }
-            catch
+            finally
             {
-                return valorDefault;
+                if (connection != null)
+                    connection.Close();
             }
+
+            return cliente;
         }
 
-        public List<ClienteEntity> ObterTodos()
+        public List<ClienteEntity> ObterTodos(string cnpjEmp)
         {
-            //TODO: código para selecionar todos os clientes
             List<ClienteEntity> clientes = new List<ClienteEntity>();
 
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("cliente_ObterTodos", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("SELECT DISTINCT Cliente.codCli, Cliente.cnpjEmp, Cliente.cnpjCli, nomEmp, nomCli, codVen, Vendedor.cpfUsu AS cpfVen, nomUsu AS nomVen FROM Cliente LEFT JOIN (SELECT DISTINCT cnpjEmp, nomEmp FROM Empresa) AS Empresa1 ON Empresa1.cnpjEmp = Cliente.cnpjEmp LEFT JOIN (SELECT DISTINCT cnpjEmp AS cnpjCli, nomEmp AS nomCli FROM Empresa) AS Empresa2 ON Empresa2.cnpjCli = Cliente.cnpjCli LEFT JOIN Vendedor ON Vendedor.codCli = Cliente.codCli LEFT JOIN Usuario ON Usuario.cpfUsu = Vendedor.cpfUsu WHERE Cliente.cnpjEmp = @cnpjEmp ORDER BY nomCli", connection);
+                command.Parameters.AddWithValue("@cnpjEmp", cnpjEmp);
                 IDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
                     ClienteEntity cliente = new ClienteEntity();
 
-                    object valor = reader.GetValue(0);
-
-                    cliente.codCli = this.ObterValor<int>(reader, 0, 0);
-                    cliente.nomCli = this.ObterValor<string>(reader, 1, null);
-                    cliente.endCli = this.ObterValor<string>(reader, 2, null);
-                    cliente.cidCli = this.ObterValor<string>(reader, 3, null);
-                    cliente.ufCli = this.ObterValor<string>(reader, 4, null);
-                    cliente.cnpjEmp = this.ObterValor<string>(reader, 5, null);
-                    cliente.nomEmp = this.ObterValor<string>(reader, 6, null);
+                    cliente.codCli = ExtraDAO.ObterValor<int>(reader, 0, 0);
+                    cliente.cnpjEmp = ExtraDAO.ObterValor<string>(reader, 1, null);
+                    cliente.cnpjCli = ExtraDAO.ObterValor<string>(reader, 2, null);
+                    cliente.nomEmp = ExtraDAO.ObterValor<string>(reader, 3, null);
+                    cliente.nomCli = ExtraDAO.ObterValor<string>(reader, 4, null);
+                    cliente.codVen = ExtraDAO.ObterValor<int>(reader, 5, 0);
+                    cliente.cpfVen = ExtraDAO.ObterValor<string>(reader, 6, null);
+                    cliente.nomVen = ExtraDAO.ObterValor<string>(reader, 7, null);
 
                     clientes.Add(cliente);
                 }
@@ -136,49 +128,15 @@ namespace CRMOnlineDAO
             return clientes;
         }
 
-        public ClienteEntity Obter(int codCli)
+        public List<ClienteEntity> Buscar(string cnpjEmp, string busca)
         {
-            //TODO: código para selecionar um cliente pelo código
-            ClienteEntity cliente = new ClienteEntity();
-
-            try
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand("cliente_Obter", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@codCli", codCli);
-                IDataReader reader = command.ExecuteReader();
-
-                reader.Read();
-                object valor = reader.GetValue(0);
-
-                cliente.codCli = this.ObterValor<int>(reader, 0, 0);
-                cliente.nomCli = this.ObterValor<string>(reader, 1, null);
-                cliente.endCli = this.ObterValor<string>(reader, 2, null);
-                cliente.cidCli = this.ObterValor<string>(reader, 3, null);
-                cliente.ufCli = this.ObterValor<string>(reader, 4, null);
-                cliente.cnpjEmp = this.ObterValor<string>(reader, 5, null);
-                cliente.nomEmp = this.ObterValor<string>(reader, 6, null);
-            }
-            finally
-            {
-                if (connection != null)
-                    connection.Close();
-            }
-
-            return cliente;
-        }
-
-        public List<ClienteEntity> Buscar(string busca)
-        {
-            //TODO: código para selecionar clientes
             List<ClienteEntity> clientes = new List<ClienteEntity>();
 
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("cliente_Buscar", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("SELECT DISTINCT Cliente.codCli, Cliente.cnpjEmp, Cliente.cnpjCli, nomEmp, nomCli, codVen, Vendedor.cpfUsu AS cpfVen, nomUsu AS nomVen FROM Cliente LEFT JOIN (SELECT DISTINCT cnpjEmp, nomEmp FROM Empresa) AS Empresa1 ON Empresa1.cnpjEmp = Cliente.cnpjEmp LEFT JOIN (SELECT DISTINCT cnpjEmp AS cnpjCli, nomEmp AS nomCli FROM Empresa) AS Empresa2 ON Empresa2.cnpjCli = Cliente.cnpjCli LEFT JOIN Vendedor ON Vendedor.codCli = Cliente.codCli LEFT JOIN Usuario ON Usuario.cpfUsu = Vendedor.cpfUsu WHERE Cliente.cnpjEmp = @cnpjEmp AND nomCli LIKE CONCAT('%', @busca, '%') ORDER BY nomCli", connection);
+                command.Parameters.AddWithValue("@cnpjEmp", cnpjEmp);
                 command.Parameters.AddWithValue("@busca", busca);
                 IDataReader reader = command.ExecuteReader();
 
@@ -186,15 +144,14 @@ namespace CRMOnlineDAO
                 {
                     ClienteEntity cliente = new ClienteEntity();
 
-                    object valor = reader.GetValue(0);
-
-                    cliente.codCli = this.ObterValor<int>(reader, 0, 0);
-                    cliente.nomCli = this.ObterValor<string>(reader, 1, null);
-                    cliente.endCli = this.ObterValor<string>(reader, 2, null);
-                    cliente.cidCli = this.ObterValor<string>(reader, 3, null);
-                    cliente.ufCli = this.ObterValor<string>(reader, 4, null);
-                    cliente.cnpjEmp = this.ObterValor<string>(reader, 5, null);
-                    cliente.nomEmp = this.ObterValor<string>(reader, 6, null);
+                    cliente.codCli = ExtraDAO.ObterValor<int>(reader, 0, 0);
+                    cliente.cnpjEmp = ExtraDAO.ObterValor<string>(reader, 1, null);
+                    cliente.cnpjCli = ExtraDAO.ObterValor<string>(reader, 2, null);
+                    cliente.nomEmp = ExtraDAO.ObterValor<string>(reader, 3, null);
+                    cliente.nomCli = ExtraDAO.ObterValor<string>(reader, 4, null);
+                    cliente.codVen = ExtraDAO.ObterValor<int>(reader, 5, 0);
+                    cliente.cpfVen = ExtraDAO.ObterValor<string>(reader, 6, null);
+                    cliente.nomVen = ExtraDAO.ObterValor<string>(reader, 7, null);
 
                     clientes.Add(cliente);
                 }

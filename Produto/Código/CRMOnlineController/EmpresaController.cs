@@ -6,12 +6,12 @@ using CRMOnlineController.Factory;
 
 namespace CRMOnlineController
 {
-    public class EmpresaController
+    public class EmpresaController : IEmpresaDAO
     {
-        public bool Inserir(EmpresaEntity empresa, string cpfUsu)
+        public bool Inserir(EmpresaEntity empresa)
         {
             IEmpresaDAO iEmpresaDAO = (IEmpresaDAO)DAOFactory.CreateDAO<IEmpresaDAO>();
-            return iEmpresaDAO.Inserir(empresa, cpfUsu);
+            return iEmpresaDAO.Inserir(empresa);
         }
 
         public bool Atualizar(EmpresaEntity empresa)
@@ -26,22 +26,22 @@ namespace CRMOnlineController
             return iEmpresaDAO.Remover(cnpjEmp);
         }
 
-        public List<EmpresaEntity> ObterTodos()
-        {
-            IEmpresaDAO iEmpresaDAO = (IEmpresaDAO)DAOFactory.CreateDAO<IEmpresaDAO>();
-            return iEmpresaDAO.ObterTodos();
-        }
-
         public EmpresaEntity Obter(string cnpjEmp)
         {
             IEmpresaDAO iEmpresaDAO = (IEmpresaDAO)DAOFactory.CreateDAO<IEmpresaDAO>();
             return iEmpresaDAO.Obter(cnpjEmp);
         }
 
-        public List<EmpresaEntity> Buscar(string cpfUsu)
+        public List<EmpresaEntity> ObterTodos()
         {
             IEmpresaDAO iEmpresaDAO = (IEmpresaDAO)DAOFactory.CreateDAO<IEmpresaDAO>();
-            return iEmpresaDAO.Buscar(cpfUsu);
+            return iEmpresaDAO.ObterTodos();
+        }
+
+        public List<EmpresaEntity> ObterTodos(string cnpjEmp)
+        {
+            IEmpresaDAO iEmpresaDAO = (IEmpresaDAO)DAOFactory.CreateDAO<IEmpresaDAO>();
+            return iEmpresaDAO.ObterTodos(cnpjEmp);
         }
     }
 }

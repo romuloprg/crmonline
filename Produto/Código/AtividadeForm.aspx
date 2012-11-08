@@ -3,36 +3,39 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h2>
-        Cadastro de Atividades
+        Cadastro de Atividade
         <br />
     </h2>
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <fieldset class="login">
         <legend>Dados da Atividade</legend>
         <p>
-            <asp:Label ID="lblDescricao" runat="server" Text="Descrição:"></asp:Label>
-            <asp:TextBox ID="txtDescricao" runat="server" style="margin-left: 59px" 
-                Width="350px" MaxLength="200"></asp:TextBox>
+            <asp:Label ID="lblCliente" runat="server" Text="Cliente:"></asp:Label>
+            <asp:DropDownList ID="txtCliente" runat="server" style="margin-left: 50px" Width="355px">
+            </asp:DropDownList>
+        </p>
+        <p>
+            <asp:Label ID="lblDescricao" runat="server" Text="Descrição: "></asp:Label>
+            <asp:TextBox ID="txtDescricao" runat="server" style="margin-left: 32px" 
+                Width="349px" MaxLength="200" TextMode="MultiLine"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="lblTipo" runat="server" Text="Tipo:"></asp:Label>
-            <asp:TextBox ID="txtTipo" runat="server" style="margin-left: 90px" 
-                Width="350px" MaxLength="50"></asp:TextBox>
+            <asp:TextBox ID="txtTipo" runat="server" style="margin-left: 63px" 
+                Width="200px" MaxLength="100"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="lblData" runat="server" Text="Data:"></asp:Label>
-            <asp:TextBox ID="txtData" runat="server" style="margin-left: 89px" 
-                Width="150px" MaxLength="10" TextMode="Date"></asp:TextBox>
+            <asp:TextBox ID="txtData" runat="server" style="margin-left: 62px" 
+                Width="100px" MaxLength="10" onkeyup="formataData(this,event);"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="lblHora" runat="server" Text="Hora:"></asp:Label>
-            <asp:TextBox ID="txtHora" runat="server" style="margin-left: 87px" 
-                Width="150px" MaxLength="5" onkeyup="formataHora(this,event);"></asp:TextBox>
+            <asp:TextBox ID="txtHora" runat="server" style="margin-left: 60px" 
+                Width="100px" MaxLength="5" onkeyup="formataHora(this,event);"></asp:TextBox>
         </p>
         <p>
-            <asp:Label ID="lblDuracao" runat="server" Text="Duração:"></asp:Label>
-            <asp:TextBox ID="txtDuracao" runat="server" style="margin-left: 67px" 
-            Width="150px" MaxLength="2" onkeyup="formataInteiro(this,event);"></asp:TextBox> hora(s)    
+            Participantes:
+            <asp:CheckBoxList ID="lstParticipantes" runat="server" BorderStyle="Dashed" BorderWidth="2px" CellPadding="1" CellSpacing="1" RepeatColumns="2" RepeatDirection="Horizontal" Width="452px"></asp:CheckBoxList>
         </p>
     </fieldset>
     <p class="submitButton">

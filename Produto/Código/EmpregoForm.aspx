@@ -6,13 +6,12 @@
         Cadastro de Emprego
         <br />
     </h2>
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <fieldset class="login">
         <legend>Dados do Emprego</legend>
         <p>
             <asp:Label ID="lblCpf" runat="server" Text="CPF: "></asp:Label>
             <asp:TextBox ID="txtCpf" runat="server" style="margin-left: 74px" 
-                Width="150px" MaxLength="11" Enabled="False"></asp:TextBox>
+                Width="150px" MaxLength="14" Enabled="False"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="lblNome" runat="server" Text="Nome:"></asp:Label>

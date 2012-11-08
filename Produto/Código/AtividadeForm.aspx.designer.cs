@@ -13,13 +13,22 @@ namespace CRMOnline {
     public partial class AtividadeForm {
         
         /// <summary>
-        /// Controle ScriptManager1.
+        /// Controle lblCliente.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.Label lblCliente;
+        
+        /// <summary>
+        /// Controle txtCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList txtCliente;
         
         /// <summary>
         /// Controle lblDescricao.
@@ -94,22 +103,13 @@ namespace CRMOnline {
         protected global::System.Web.UI.WebControls.TextBox txtHora;
         
         /// <summary>
-        /// Controle lblDuracao.
+        /// Controle lstParticipantes.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDuracao;
-        
-        /// <summary>
-        /// Controle txtDuracao.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDuracao;
+        protected global::System.Web.UI.WebControls.CheckBoxList lstParticipantes;
         
         /// <summary>
         /// Controle btnGravar.

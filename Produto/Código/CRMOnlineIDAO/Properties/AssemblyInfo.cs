@@ -2,9 +2,9 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
+// Informações gerais sobre um assembly são controladas através do seguinte 
+// conjunto de atributos. Altere o valor destes atributos para modificar a informação
+// associada a um assembly.
 [assembly: AssemblyTitle("CRMOnlineIDAO")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
@@ -14,23 +14,23 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// Setting ComVisible to false makes the types in this assembly not visible 
-// to COM components.  If you need to access a type in this assembly from 
-// COM, set the ComVisible attribute to true on that type.
+// Definir ComVisible como false torna os tipos neste assembly não visíveis 
+// para componentes COM. Caso precise acessar um tipo neste assembly a partir de 
+// COM, defina o atributo ComVisible como true nesse tipo.
 [assembly: ComVisible(false)]
 
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6ab0e9bd-7d9d-4411-ab7f-461f50a310f5")]
+// O GUID a seguir é para o ID da typelib se este projeto for exposto para COM
+[assembly: Guid("f1d02c4b-de19-453e-ace9-4d0d3a4e0928")]
 
-// Version information for an assembly consists of the following four values:
+// Informações de Versão para um assembly consistem nos quatro valores a seguir:
 //
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
+//      Versão Principal
+//      Versão Secundária 
+//      Número da Versão
+//      Revisão
 //
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
+// É possível especificar todos os valores ou usar o padrão de Números de Compilação e Revisão 
+// utilizando o '*' como mostrado abaixo:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BD1F3F83-6C15-473B-847B-652C9B22E07D}</ProjectGuid>
+    <ProjectGuid>{8CA7FD32-1A11-4867-AA09-314A76EA39DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CRMOnlineController</RootNamespace>
     <AssemblyName>CRMOnlineController</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,7 +28,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -43,22 +40,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratoController.cs" />
     <Compile Include="ClienteController.cs" />
     <Compile Include="AtividadeController.cs" />
-    <Compile Include="GraduacaoController.cs" />
+    <Compile Include="LembreteController.cs" />
+    <Compile Include="ParticipanteController.cs" />
+    <Compile Include="VendedorController.cs" />
     <Compile Include="EmpresaController.cs" />
-    <Compile Include="ExtrasController.cs" />
+    <Compile Include="ExtraController.cs" />
     <Compile Include="Factory\DAOFactory.cs" />
+    <Compile Include="GraduacaoController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CRMOnlineEntity\CRMOnlineEntity.csproj">
-      <Project>{1c60e3a0-10f6-4159-8547-45a0d32b391f}</Project>
+      <Project>{145734b4-26a2-4081-b3b1-3e3b68a49004}</Project>
       <Name>CRMOnlineEntity</Name>
     </ProjectReference>
     <ProjectReference Include="..\CRMOnlineIDAO\CRMOnlineIDAO.csproj">
-      <Project>{e8fdaff6-866c-4a9f-a062-26990387292d}</Project>
+      <Project>{0a58e4bb-d4a6-415f-be7f-3735f2bf5617}</Project>
       <Name>CRMOnlineIDAO</Name>
     </ProjectReference>
   </ItemGroup>

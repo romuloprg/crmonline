@@ -1,9 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Configuration;
 using CRMOnlineController;
 using CRMOnlineEntity;
 
@@ -13,62 +12,56 @@ namespace CRMOnline
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Executa apenas na primeira carga da página
             if (!Page.IsPostBack)
             {
-                try
+                ClienteController clienteController = new ClienteController();
+                txtCliente.DataSource = clienteController.ObterTodos(Session["cnpjEmp"].ToString());
+                txtCliente.DataTextField = "nomCli";
+                txtCliente.DataValueField = "codCli";
+                txtCliente.DataBind();
+
+                UsuarioController usuarioController = new UsuarioController();
+                lstParticipantes.DataSource = usuarioController.ObterParteFuncionarios(Session["cpfUsu"].ToString());
+                lstParticipantes.DataTextField = "nomUsu";
+                lstParticipantes.DataValueField = "cpfUsu";
+                lstParticipantes.DataBind();
+
+                txtCliente.Items.Insert(0, new ListItem("", "0"));
+
+                if (Request.QueryString["codAti"] != null)
                 {
-                    int codAti = Convert.ToInt32(Request.QueryString["codAti"]);
-                    preencheCampos(codAti);
-                    txtDescricao.Focus();
+                    PreencheCampos();
+                    txtCliente.Enabled = false;
+                    txtCliente.Focus();
                 }
-                catch
-                { }
             }
         }
 
-        protected void btnGravar_Click(object sender, EventArgs e)
+        private void PreencheCampos()
         {
-            // Cria a instância
-            AtividadeEntity atividade = new AtividadeEntity();
             AtividadeController atividadeController = new AtividadeController();
+            AtividadeEntity atividade = atividadeController.Obter(Convert.ToInt32(Request.QueryString["codAti"].ToString()));
+            ParticipanteController participanteController = new ParticipanteController();
 
-            if (txtDescricao.Text == "" || txtTipo.Text == "" || txtData.Text == "" || txtHora.Text == "")
-                this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Preencha todos os campos!');</script>");
-            else
+            try
             {
-                atividade.desAti = txtDescricao.Text;
-                atividade.tipAti = txtTipo.Text;
-                atividade.datAti = txtData.Text; // data está como string
-                atividade.horAti = txtHora.Text; // hora esta como string
-                atividade.durAti = Convert.ToInt32(txtDuracao.Text);// converte para inteiro
+                txtCliente.Items.FindByValue(atividade.codCli.ToString()).Selected = true;
 
-                int codAti = 0;
-
-                try
+                List<string> participantes = participanteController.ObterTodos(Convert.ToInt32(Request.QueryString["codAti"].ToString()));
+                for (int i = 0; i < lstParticipantes.Items.Count; i++)
                 {
-                    codAti = Convert.ToInt32(Request.QueryString["codAti"]);
-                }
-                catch
-                { }
-
-                // Chama método
-                if (codAti != 0)
-                {
-                    atividade.codAti = codAti;
-                    if (atividadeController.Atualizar(atividade))
-                        this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Atividade alterada com sucesso!'); window.location.href='Atividade.aspx';</script>");
-                    else
-                        this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Erro na alteração do registro!');</script>");
-                }
-                else
-                {
-                    if (atividadeController.Inserir(atividade))
-                        this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Atividade salva com sucesso!'); window.location.href='Atividade.aspx';</script>");
-                    else
-                        this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Erro na inclusão do registro!');</script>");
+                    if (participantes.Contains(lstParticipantes.Items[i].Value))
+                        lstParticipantes.Items[i].Selected = true;
                 }
             }
+            catch
+            { }
+            txtDescricao.Text = atividade.desAti;
+            txtTipo.Text = atividade.tipAti;
+            txtData.Text = atividade.datAti;
+            txtHora.Text = atividade.horAti;
+
+
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -76,15 +69,65 @@ namespace CRMOnline
             Response.Redirect("~/Atividade.aspx");
         }
 
-        private void preencheCampos(int codAti)
+        private void insereParticipantes(int codAti)
         {
+            ParticipanteEntity participante = new ParticipanteEntity();
+            ParticipanteController participanteController = new ParticipanteController();
+
+            participante.codAti = codAti;
+            participante.cpfUsu = Session["cpfUsu"].ToString();
+            participanteController.Inserir(participante);
+
+            for (int i = 0; i < lstParticipantes.Items.Count; i++)
+            {
+                if (lstParticipantes.Items[i].Selected)
+                {
+                    participante.cpfUsu = lstParticipantes.Items[i].Value;
+                    participanteController.Inserir(participante);
+                }
+            }
+        }
+
+        protected void btnGravar_Click(object sender, EventArgs e)
+        {
+            AtividadeEntity atividade = new AtividadeEntity();
             AtividadeController atividadeController = new AtividadeController();
-            AtividadeEntity atividade = atividadeController.Obter(codAti);
-            txtDescricao.Text = atividade.desAti;
-            txtTipo.Text = atividade.tipAti;
-            txtData.Text = atividade.datAti; // data está como string
-            txtHora.Text = atividade.horAti; // hora esta como string
-            txtDuracao.Text = atividade.durAti.ToString();
+            ParticipanteController participanteController = new ParticipanteController();
+
+            if (txtCliente.SelectedValue == "0" || txtDescricao.Text == "" || txtTipo.Text == "" || txtData.Text == "" || txtHora.Text == "")
+                this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Preencha todos os campos!');</script>");
+            else
+            {
+                atividade.codCli = Convert.ToInt32(txtCliente.SelectedValue);
+                atividade.desAti = txtDescricao.Text;
+                atividade.tipAti = txtTipo.Text;
+                atividade.datAti = txtData.Text;
+                atividade.horAti = txtHora.Text;
+
+                if (Request.QueryString["codAti"] != null)
+                {
+                    if (atividadeController.Atualizar(atividade))
+                    {
+                        participanteController.Remover(Convert.ToInt32(Request.QueryString["codAti"].ToString()));
+                        insereParticipantes(Convert.ToInt32(Request.QueryString["codAti"].ToString()));
+
+                        this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Atividade alterada com sucesso!'); window.location.href='Atividade.aspx';</script>");
+                    }
+                    else
+                        this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Erro na alteração do registro!');</script>");
+                }
+                else
+                {
+                    if (atividadeController.Inserir(atividade))
+                    {
+                        insereParticipantes(atividadeController.ObterUltimo().codAti);
+
+                        this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Atividade salva com sucesso!'); window.location.href='Atividade.aspx';</script>");
+                    }
+                    else
+                        this.ClientScript.RegisterClientScriptBlock(typeof(string), "alert", "<script>alert('Erro na inclusão do registro!');</script>");
+                }
+            }
         }
     }
 }
