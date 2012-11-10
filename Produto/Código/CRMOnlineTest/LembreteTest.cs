@@ -17,12 +17,16 @@ namespace CRMOnlineTest
         public void TestInitialize1()
         {
             lembrete = new LembreteEntity();
+            lembreteDAO = new LembreteDAO();
         }
 
         [TestMethod]
         public void TestMethod1()
         {
-            
+            lembrete.datLem = "10/11/2012";
+            lembrete.horLem = "10:02";
+
+            Assert.IsTrue(lembreteDAO.Verificar(lembrete));
         }
 
         //[ClassInitialize]
@@ -30,5 +34,6 @@ namespace CRMOnlineTest
         //[TestInitialize]
         //[TestCleanup]
         //[ClassCleanup]
+
     }
 }

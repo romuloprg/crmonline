@@ -165,7 +165,13 @@ namespace CRMOnlineDAO
         // O método original seria void, porém para fazer o TDD será usado bool para simplificar a codificação
         public bool Verificar(LembreteEntity lembrete)
         {
-            
+            string dataAtual = DateTime.Now.Date.ToShortDateString();
+            string horaAtual = DateTime.Now.TimeOfDay.ToString().Substring(0, 5);
+
+            if (lembrete.datLem == dataAtual && lembrete.horLem == horaAtual)
+                return true;
+            else
+                return false;
         }
     }
 }
