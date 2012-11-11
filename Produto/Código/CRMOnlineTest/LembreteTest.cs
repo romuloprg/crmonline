@@ -23,8 +23,29 @@ namespace CRMOnlineTest
         [TestMethod]
         public void TestMethod1()
         {
-            lembrete.datLem = "10/11/2012";
-            lembrete.horLem = "10:02";
+            lembrete.datLem = "11/11/2012";
+            lembrete.horLem = "10:58";
+            lembrete.diaLem = 0;
+
+            Assert.IsTrue(lembreteDAO.Verificar(lembrete));
+        }
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+            lembrete.datAti = "15/11/2012";
+            lembrete.horAti = "10:59";
+            lembrete.diaLem = 5;
+
+            Assert.IsTrue(lembreteDAO.Verificar(lembrete));
+        }
+
+        [TestMethod]
+        public void TestMethod3()
+        {
+            lembrete.datAti = "15/11/2012";
+            lembrete.horAti = "10:59";
+            lembrete.diaLem = 5;
 
             Assert.IsTrue(lembreteDAO.Verificar(lembrete));
         }
