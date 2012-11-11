@@ -183,11 +183,30 @@ namespace CRMOnlineDAO
                 DateTime datAti = Convert.ToDateTime(lembrete.datAti);
                 TimeSpan horAti = Convert.ToDateTime(lembrete.horAti).TimeOfDay;
 
-                DateTime datLem = datAti.AddDays(diaLem * -1);
-                TimeSpan horLem = horAti;
+                if (lembrete.semLem == false)
+                {
+                    DateTime datLem = datAti.AddDays(diaLem * -1);
+                    TimeSpan horLem = horAti;
 
-                if (datLem <= dataAtual && datAti > dataAtual && horLem == horaAtual)
-                    return true;
+                    if (datLem <= dataAtual && datAti > dataAtual && horLem == horaAtual)
+                        return true;
+                }
+                else
+                {
+                    int fimDeSemana = 0;
+
+                    for (int i = 1; i <= diaLem; i++)
+                    {
+                        if (datAti.AddDays(i * -1).DayOfWeek == DayOfWeek.Saturday || datAti.AddDays(i * -1).DayOfWeek == DayOfWeek.Sunday)
+                            fimDeSemana++;
+                    }
+
+                    DateTime datLem = datAti.AddDays((diaLem + fimDeSemana) * -1);
+                    TimeSpan horLem = horAti;
+
+                    if (dataAtual.DayOfWeek != DayOfWeek.Saturday && dataAtual.DayOfWeek != DayOfWeek.Sunday && datLem <= dataAtual && datAti > dataAtual && horLem == horaAtual)
+                        return true;
+                }
             }
 
             return false;

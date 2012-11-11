@@ -36,6 +36,7 @@ namespace CRMOnlineTest
             lembrete.datAti = "15/11/2012";
             lembrete.horAti = "10:59";
             lembrete.diaLem = 5;
+            lembrete.semLem = false;
 
             Assert.IsTrue(lembreteDAO.Verificar(lembrete));
         }
@@ -44,17 +45,11 @@ namespace CRMOnlineTest
         public void TestMethod3()
         {
             lembrete.datAti = "15/11/2012";
-            lembrete.horAti = "10:59";
+            lembrete.horAti = "11:25";
             lembrete.diaLem = 5;
+            lembrete.semLem = true;
 
             Assert.IsTrue(lembreteDAO.Verificar(lembrete));
         }
-
-        //[ClassInitialize]
-        //[TestInitialize]
-        //[TestInitialize]
-        //[TestCleanup]
-        //[ClassCleanup]
-
     }
 }
